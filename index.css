@@ -1,6 +1,7 @@
-@import "tailwindcss";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
-/* Base styles - Applied first */
 @layer base {
   * {
     margin: 0;
@@ -13,9 +14,7 @@
   }
 
   body {
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    font-family: 'Inter', sans-serif;
+    @apply font-sans antialiased;
     background-color: #ffffff;
     color: #333333;
     line-height: 1.6;
@@ -39,49 +38,29 @@
   }
 }
 
-/* Theme configuration */
-@theme {
-  /* Brand Colors */
-  --color-brand-50: #eff6ff;
-  --color-brand-100: #dbeafe;
-  --color-brand-200: #bfdbfe;
-  --color-brand-300: #93c5fd;
-  --color-brand-400: #60a5fa;
-  --color-brand-500: #3b82f6;
-  --color-brand-600: #203A8F;
-  --color-brand-700: #1d4ed8;
-  --color-brand-800: #1e40af;
-  --color-brand-900: #0f172a;
-  --color-brand-black: #1a1a1a;
-  --color-brand-gray: #333333;
-  --color-brand-silver: #F8FAFC;
-
-  /* Accent Colors */
-  --color-accent-400: #f472b6;
-  --color-accent-500: #CF2E78;
-  --color-accent-600: #be185d;
-  --color-accent-700: #9d174d;
-
-  /* Font Families */
-  --font-family-sans: 'Inter', sans-serif;
-  --font-family-serif: 'Playfair Display', serif;
-
-  /* Animations */
-  --animate-float: float 6s ease-in-out infinite;
-}
-
-/* Keyframes */
-@keyframes float {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-20px); }
-}
-
-/* Component utilities */
 @layer components {
   .glass-card {
     background: rgba(255, 255, 255, 0.03);
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
     border: 1px solid rgba(255, 255, 255, 0.05);
+  }
+}
+
+@layer utilities {
+  .animate-float {
+    animation: float 6s ease-in-out infinite;
+  }
+}
+
+@keyframes float {
+
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-20px);
   }
 }
