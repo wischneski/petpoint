@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <!-- 1. CHARSET E VIEWPORT - Sempre primeiro -->
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <!-- 2. PRECONNECTS - Estabelece conexão antecipada com domínios externos -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="dns-prefetch" href="https://www.googletagmanager.com">
+    <link rel="dns-prefetch" href="https://connect.facebook.net">
+
+    <!-- 3. META TAGS SEO -->
+    <title>PetPoint | Hospital Veterinário & Estética em Morro da Fumaça/SC</title>
+    <meta name="description" content="Clínica veterinária de excelência em Morro da Fumaça. Medicina de ponta, estética especializada e petshop premium. Corpo clínico qualificado, plantão 24h para emergências." />
+    <meta name="keywords" content="veterinário morro da fumaça, clínica veterinária, hospital veterinário, estética pet, petshop, banho e tosa, cirurgia veterinária, emergência pet" />
+    <link rel="canonical" href="https://www.petpoint.com.br/" />
+    <meta name="robots" content="index, follow" />
+    <meta name="author" content="PetPoint Hospital Veterinário" />
+
+    <!-- Geolocalização (negócios locais) -->
+    <meta name="geo.region" content="BR-SC" />
+    <meta name="geo.placename" content="Morro da Fumaça" />
+    <meta name="geo.position" content="-28.6489;-49.2069" />
+
+    <!-- 4. OPEN GRAPH (Facebook, WhatsApp, LinkedIn) -->
+    <meta property="og:title" content="PetPoint | Hospital Veterinário & Estética" />
+    <meta property="og:description" content="Medicina de ponta e cuidado real para seu pet. A melhor clínica veterinária de Morro da Fumaça/SC." />
+    <meta property="og:image" content="https://www.petpoint.com.br/images/meta/og-image.jpg" />
+    <meta property="og:url" content="https://www.petpoint.com.br/" />
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="pt_BR" />
+    <meta property="og:site_name" content="PetPoint" />
+
+    <!-- 5. TWITTER CARDS -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="PetPoint | Hospital Veterinário & Estética" />
+    <meta name="twitter:description" content="Medicina de ponta e cuidado real para seu pet em Morro da Fumaça/SC" />
+    <meta name="twitter:image" content="https://www.petpoint.com.br/images/meta/og-image.jpg" />
+
+    <!-- 6. FAVICON -->
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="manifest" href="/manifest.json" />
+    <meta name="theme-color" content="#CF2E78" />
+
+    <!-- 7. FONTES COM DISPLAY=SWAP - Evita FOIT (Flash of Invisible Text) -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;900&family=Playfair+Display:ital,wght@0,400;0,600;1,400;1,700&display=swap" rel="stylesheet">
+
+    <!-- 8. CSS CRÍTICO INLINE - Apenas estilos above-the-fold -->
+    <style>
+      /* Reset mínimo + Estilos críticos para Hero */
+      *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+      html{scroll-behavior:smooth;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}
+      body{font-family:'Inter',sans-serif;background-color:#0f172a;color:#333;line-height:1.6}
+      .font-serif{font-family:'Playfair Display',serif}
+      .bg-brand-900{background-color:#0f172a}
+      .text-white{color:#fff}
+      .text-accent-500{color:#CF2E78}
+      #root{min-height:100vh}
+      /* Loading spinner inicial */
+      .loading{display:flex;align-items:center;justify-content:center;min-height:100vh;background:#0f172a}
+      .spinner{width:48px;height:48px;border:4px solid rgba(207,46,120,0.2);border-top-color:#CF2E78;border-radius:50%;animation:spin 0.8s linear infinite}
+      @keyframes spin{to{transform:rotate(360deg)}}
+    </style>
+
+    <!-- 9. STRUCTURED DATA (JSON-LD) para SEO -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "VeterinaryCare",
+      "name": "PetPoint Hospital Veterinário & Estética",
+      "image": "https://www.petpoint.com.br/images/meta/logo.jpg",
+      "description": "Clínica veterinária de excelência em Morro da Fumaça/SC. Medicina de ponta, estética especializada e petshop premium.",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Rua Principal, 123",
+        "addressLocality": "Morro da Fumaça",
+        "addressRegion": "SC",
+        "postalCode": "88940-000",
+        "addressCountry": "BR"
+      },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": "-28.6489",
+        "longitude": "-49.2069"
+      },
+      "url": "https://www.petpoint.com.br",
+      "telephone": "+55-48-9999-9999",
+      "priceRange": "$$",
+      "openingHoursSpecification": [
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+          "opens": "08:00",
+          "closes": "19:00"
+        },
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": "Saturday",
+          "opens": "08:00",
+          "closes": "13:00"
+        }
+      ],
+      "sameAs": [
+        "https://instagram.com/petpointanimal"
+      ]
+    }
+    </script>
+
+    <!-- 10. ANALYTICS - Meta Pixel (Facebook/Instagram) -->
+    <script>
+      window.requestIdleCallback ?
+        requestIdleCallback(initMetaPixel, {timeout: 3000}) :
+        setTimeout(initMetaPixel, 2000);
+
+      function initMetaPixel() {
+        !function(f,b,e,v,n,t,s)
+        {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+        n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+        if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+        n.queue=[];t=b.createElement(e);t.async=!0;
+        t.src=v;s=b.getElementsByTagName(e)[0];
+        s.parentNode.insertBefore(t,s)}(window, document,'script',
+        'https://connect.facebook.net/en_US/fbevents.js');
+        // Substitua 'YOUR_PIXEL_ID' pelo seu ID real do Meta Pixel
+        // fbq('init', 'YOUR_PIXEL_ID');
+        // fbq('track', 'PageView');
+      }
+    </script>
+
+    <!-- 11. GOOGLE ANALYTICS 4 -->
+    <script>
+      window.requestIdleCallback ?
+        requestIdleCallback(initGA, {timeout: 3000}) :
+        setTimeout(initGA, 2000);
+
+      function initGA() {
+        var s = document.createElement('script');
+        s.src = 'https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX';
+        s.async = true;
+        document.head.appendChild(s);
+
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        // Substitua 'G-XXXXXXXXXX' pelo seu ID real do Google Analytics
+        // gtag('config', 'G-XXXXXXXXXX');
+      }
+    </script>
+
+</head>
+  <body class="bg-brand-silver text-brand-gray selection:bg-accent-500 selection:text-white">
+    <!-- Loading inicial -->
+    <div id="loading" class="loading">
+      <div class="spinner"></div>
+    </div>
+
+    <div id="root"></div>
+
+    <script type="module" src="/index.tsx"></script>
+
+    <!-- Script para remover loading quando app carregar -->
+    <script>
+      window.addEventListener('DOMContentLoaded', function() {
+        setTimeout(function() {
+          const loading = document.getElementById('loading');
+          if (loading) loading.style.display = 'none';
+        }, 100);
+      });
+    </script>
+</body>
+</html>

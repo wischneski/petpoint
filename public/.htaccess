@@ -1,0 +1,169 @@
+# .htaccess otimizado para PetPoint - Hostinger
+# Configurações para performance, cache, segurança e SPA
+
+# ============================================
+# 1. COMPRESSÃO GZIP/BROTLI
+# ============================================
+<IfModule mod_deflate.c>
+  # Habilitar compressão para tipos de arquivo
+  AddOutputFilterByType DEFLATE text/html
+  AddOutputFilterByType DEFLATE text/plain
+  AddOutputFilterByType DEFLATE text/css
+  AddOutputFilterByType DEFLATE text/xml
+  AddOutputFilterByType DEFLATE application/javascript
+  AddOutputFilterByType DEFLATE application/x-javascript
+  AddOutputFilterByType DEFLATE application/json
+  AddOutputFilterByType DEFLATE application/xml
+  AddOutputFilterByType DEFLATE application/rss+xml
+  AddOutputFilterByType DEFLATE application/atom+xml
+  AddOutputFilterByType DEFLATE image/svg+xml
+  AddOutputFilterByType DEFLATE font/woff
+  AddOutputFilterByType DEFLATE font/woff2
+  AddOutputFilterByType DEFLATE font/ttf
+  AddOutputFilterByType DEFLATE font/eot
+  AddOutputFilterByType DEFLATE font/otf
+</IfModule>
+
+# ============================================
+# 2. CACHE DE LONGO PRAZO
+# ============================================
+<IfModule mod_expires.c>
+  ExpiresActive On
+
+  # Assets com hash no nome (cache 1 ano - immutable)
+  <FilesMatch "\.(js|css|woff2|woff|ttf|eot|otf)$">
+    ExpiresDefault "access plus 1 year"
+    Header set Cache-Control "public, max-age=31536000, immutable"
+  </FilesMatch>
+
+  # Imagens (cache 6 meses)
+  <FilesMatch "\.(jpg|jpeg|png|gif|webp|avif|ico|svg)$">
+    ExpiresDefault "access plus 6 months"
+    Header set Cache-Control "public, max-age=15552000"
+  </FilesMatch>
+
+  # HTML (cache curto com revalidação)
+  <FilesMatch "\.(html|htm)$">
+    ExpiresDefault "access plus 1 hour"
+    Header set Cache-Control "public, max-age=3600, must-revalidate"
+  </FilesMatch>
+
+  # Manifests e feeds (cache 1 semana)
+  <FilesMatch "\.(xml|txt|json)$">
+    ExpiresDefault "access plus 1 week"
+    Header set Cache-Control "public, max-age=604800"
+  </FilesMatch>
+</IfModule>
+
+# ============================================
+# 3. HEADERS DE SEGURANÇA
+# ============================================
+<IfModule mod_headers.c>
+  # Previne MIME type sniffing
+  Header set X-Content-Type-Options "nosniff"
+
+  # Previne clickjacking
+  Header set X-Frame-Options "SAMEORIGIN"
+
+  # XSS Protection (navegadores antigos)
+  Header set X-XSS-Protection "1; mode=block"
+
+  # Referrer Policy
+  Header set Referrer-Policy "strict-origin-when-cross-origin"
+
+  # Permissions Policy (desabilitar recursos não usados)
+  Header set Permissions-Policy "geolocation=(self), microphone=(), camera=(), payment=()"
+
+  # Remove header de servidor (segurança por obscuridade)
+  Header unset Server
+  Header unset X-Powered-By
+</IfModule>
+
+# ============================================
+# 4. REWRITE RULES PARA SPA (Single Page Application)
+# ============================================
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  RewriteBase /
+
+  # Não reescrever se arquivo existe
+  RewriteCond %{REQUEST_FILENAME} !-f
+  RewriteCond %{REQUEST_FILENAME} !-d
+
+  # Não reescrever para arquivos da pasta assets
+  RewriteCond %{REQUEST_URI} !^/assets/
+
+  # Redirecionar tudo para index.html (SPA)
+  RewriteRule ^ index.html [L]
+
+  # Forçar HTTPS (descomente se tiver SSL)
+  # RewriteCond %{HTTPS} off
+  # RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+  # Remover trailing slash (opcional)
+  # RewriteCond %{REQUEST_FILENAME} !-d
+  # RewriteRule ^(.*)/$ /$1 [L,R=301]
+</IfModule>
+
+# ============================================
+# 5. MIME TYPES (caso o servidor não tenha)
+# ============================================
+<IfModule mod_mime.c>
+  # JavaScript
+  AddType application/javascript js mjs
+  AddType application/json json map
+
+  # Fontes
+  AddType font/woff woff
+  AddType font/woff2 woff2
+  AddType font/ttf ttf
+  AddType font/eot eot
+  AddType font/otf otf
+
+  # Imagens modernas
+  AddType image/webp webp
+  AddType image/avif avif
+  AddType image/svg+xml svg svgz
+
+  # Manifests
+  AddType application/manifest+json webmanifest
+  AddType application/x-web-app-manifest+json webapp
+</IfModule>
+
+# ============================================
+# 6. PROTEÇÃO DE ARQUIVOS
+# ============================================
+# Bloquear acesso a arquivos sensíveis
+<FilesMatch "(^\.htaccess|^\.env|\.git|\.md|package\.json|tsconfig\.json|vite\.config\.ts)$">
+  <IfModule mod_authz_core.c>
+    Require all denied
+  </IfModule>
+  <IfModule !mod_authz_core.c>
+    Order allow,deny
+    Deny from all
+  </IfModule>
+</FilesMatch>
+
+# ============================================
+# 7. OTIMIZAÇÕES ADICIONAIS
+# ============================================
+# Desabilitar listagem de diretórios
+Options -Indexes
+
+# Desabilitar ETags (usamos Cache-Control)
+<IfModule mod_headers.c>
+  Header unset ETag
+</IfModule>
+FileETag None
+
+# Charset UTF-8 para HTML e CSS
+AddDefaultCharset UTF-8
+<IfModule mod_mime.c>
+  AddCharset UTF-8 .html .css .js .xml .json
+</IfModule>
+
+# ============================================
+# 8. ERROR PAGES (opcional)
+# ============================================
+# ErrorDocument 404 /index.html
+# ErrorDocument 500 /index.html
