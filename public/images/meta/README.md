@@ -200,15 +200,15 @@ https://cards-dev.twitter.com/validator
 
 ```html
 <!-- Open Graph -->
-<meta property="og:image" content="https://www.petpoint.com.br/images/meta/og-image.jpg" />
+<meta property="og:image" content="https://www.meupetpoint.com.br/images/meta/og-image.jpg" />
 
 <!-- Twitter -->
-<meta name="twitter:image" content="https://www.petpoint.com.br/images/meta/og-image.jpg" />
+<meta name="twitter:image" content="https://www.meupetpoint.com.br/images/meta/og-image.jpg" />
 
 <!-- JSON-LD -->
 <script type="application/ld+json">
 {
-  "image": "https://www.petpoint.com.br/images/meta/logo.jpg"
+  "image": "https://www.meupetpoint.com.br/images/meta/logo.jpg"
 }
 </script>
 ```

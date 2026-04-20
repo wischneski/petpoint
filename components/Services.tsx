@@ -9,38 +9,36 @@ const Services: React.FC = () => {
       icon: Activity,
       title: "Clínica Médica & Cirúrgica",
       description: "Da prevenção a tratamentos complexos. Uma equipe preparada para diagnósticos rápidos e assertivos.",
-      image: "https://images.unsplash.com/photo-1576201836106-db1758fd1c97?q=80&w=2070&auto=format&fit=crop"
+      image: "/images/services/clinica.webp"
     },
     {
       id: 2,
       icon: Scissors,
       title: "Centro de Estética",
       description: "Mais que um banho, uma renovação. Utilizamos produtos premium e técnicas que reduzem o estresse.",
-      image: "https://images.unsplash.com/photo-1516734212186-a967f81ad0d7?q=80&w=2071&auto=format&fit=crop"
+      image: "/images/services/estetica.webp"
     },
     {
       id: 3,
       icon: ShoppingBag,
       title: "PetShop Premium",
       description: "Nutrição de alta performance, farmácia completa e acessórios selecionados para segurança e conforto.",
-      image: "https://images.unsplash.com/photo-1601758228041-f3b2795255f1?q=80&w=2070&auto=format&fit=crop"
+      image: "/images/services/petshop.webp"
     }
   ];
 
   return (
-    <section id="services" className="relative py-32 bg-brand-silver z-10">
+    <section id="services" className="relative py-32 bg-brand-silver z-10 below-fold">
       <div className="container mx-auto px-6">
         <div className="flex flex-col md:flex-row justify-between items-end mb-20 gap-8">
-          <div className="max-w-2xl">
-            <Reveal width="100%">
-              <h2 className="font-serif text-5xl md:text-6xl text-brand-900 mb-6 leading-tight">
-                Soluções Completas <br />
-                <span className="text-brand-600">para o Bem-Estar</span>
-              </h2>
-            </Reveal>
-          </div>
+          <Reveal>
+            <h2 className="font-serif text-5xl md:text-6xl text-brand-900 leading-tight">
+              Soluções Completas <br />
+              <span className="text-brand-600">para o Bem-Estar</span>
+            </h2>
+          </Reveal>
           <Reveal delay={200}>
-            <p className="text-brand-gray text-lg max-w-md pb-2 border-b border-brand-200">
+            <p className="text-brand-gray text-lg max-w-sm leading-relaxed">
               Cuidamos de cada detalhe, do exame clínico ao acessório perfeito para o seu pet.
             </p>
           </Reveal>
@@ -52,11 +50,21 @@ const Services: React.FC = () => {
               <div className="group relative bg-white rounded-3xl overflow-hidden shadow-xl hover:shadow-2xl transition-all duration-500 h-[500px] flex flex-col hover:-translate-y-2">
                 {/* Image Background */}
                 <div className="absolute inset-0 z-0">
-                  <img
-                    src={service.image}
-                    alt={service.title}
-                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 grayscale group-hover:grayscale-0"
-                  />
+                  <picture>
+                    <source
+                      srcSet={`${service.image.replace('.webp', '-400.webp')} 400w, ${service.image.replace('.webp', '-800.webp')} 800w`}
+                      type="image/webp"
+                      sizes="(max-width: 768px) 100vw, 33vw"
+                    />
+                    <img
+                      src={service.image}
+                      alt={service.title}
+                      width={800}
+                      height={533}
+                      loading="lazy"
+                      className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 grayscale group-hover:grayscale-0"
+                    />
+                  </picture>
                   <div className="absolute inset-0 bg-gradient-to-t from-brand-900 via-brand-900/40 to-transparent opacity-90 group-hover:opacity-60 transition-opacity duration-500" />
                 </div>
 

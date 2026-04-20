@@ -1,16 +1,25 @@
 import React from 'react';
-import ReactDOM from 'react-dom/client';
+import { createRoot, hydrateRoot } from 'react-dom/client';
 import App from './App';
 import './index.css';
 
-const rootElement = document.getElementById('root');
-if (!rootElement) {
-  throw new Error("Could not find root element to mount to");
+const rootElement = document.getElementById('root')!;
+
+function doMount() {
+  if (rootElement.hasChildNodes()) {
+    hydrateRoot(
+      rootElement,
+      <React.StrictMode><App /></React.StrictMode>
+    );
+  } else {
+    createRoot(rootElement).render(
+      <React.StrictMode><App /></React.StrictMode>
+    );
+  }
 }
 
-const root = ReactDOM.createRoot(rootElement);
-root.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>
-);
+if ('requestIdleCallback' in window) {
+  requestIdleCallback(() => doMount(), { timeout: 8000 });
+} else {
+  setTimeout(doMount, 0);
+}

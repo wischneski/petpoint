@@ -4,10 +4,10 @@ import { Reveal } from './ui/Reveal';
 
 const Testimonials: React.FC = () => {
   return (
-    <section className="py-24 bg-brand-900 text-white relative overflow-hidden">
+    <section className="py-24 bg-brand-900 text-white relative overflow-hidden below-fold">
       {/* Decorative circles */}
-      <div className="absolute top-0 left-0 w-64 h-64 bg-accent-500/10 rounded-full blur-3xl -translate-x-1/2 -translate-y-1/2" />
-      <div className="absolute bottom-0 right-0 w-96 h-96 bg-brand-500/10 rounded-full blur-3xl translate-x-1/2 translate-y-1/2" />
+      <div className="absolute top-0 left-0 w-64 h-64 -translate-x-1/2 -translate-y-1/2 rounded-full" style={{background:"radial-gradient(circle, rgba(207,46,120,0.10) 0%, transparent 70%)"}} />
+      <div className="absolute bottom-0 right-0 w-96 h-96 translate-x-1/2 translate-y-1/2 rounded-full" style={{background:"radial-gradient(circle, rgba(59,130,246,0.10) 0%, transparent 70%)"}} />
 
       <div className="container mx-auto px-6 relative z-20">
         <div className="text-center mb-16">
@@ -31,8 +31,8 @@ const Testimonials: React.FC = () => {
                   <p className="font-bold text-lg">Maria S.</p>
                   <p className="text-brand-200 text-sm">Tutora de Golden Retriever</p>
                 </div>
-                <div className="flex text-yellow-400 gap-1">
-                  {[...Array(5)].map((_, i) => <Star key={i} className="w-5 h-5 fill-current" />)}
+                <div role="img" aria-label="Avalia\u00e7\u00e3o: 5 de 5 estrelas" className="flex text-yellow-400 gap-1">
+                  {[...Array(5)].map((_, i) => <Star key={i} className="w-5 h-5 fill-current" aria-hidden="true" />)}
                 </div>
               </div>
             </div>
@@ -46,11 +46,11 @@ const Testimonials: React.FC = () => {
               </p>
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="font-bold text-lg">João P.</p>
+                  <p className="font-bold text-lg">Marcos P.</p>
                   <p className="text-brand-200 text-sm">Tutor de Persa</p>
                 </div>
-                <div className="flex text-yellow-400 gap-1">
-                  {[...Array(5)].map((_, i) => <Star key={i} className="w-5 h-5 fill-current" />)}
+                <div role="img" aria-label="Avalia\u00e7\u00e3o: 5 de 5 estrelas" className="flex text-yellow-400 gap-1">
+                  {[...Array(5)].map((_, i) => <Star key={i} className="w-5 h-5 fill-current" aria-hidden="true" />)}
                 </div>
               </div>
             </div>

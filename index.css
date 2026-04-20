@@ -48,19 +48,88 @@
 }
 
 @layer utilities {
-  .animate-float {
-    animation: float 6s ease-in-out infinite;
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+
+  .line-clamp-2 {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  .line-clamp-3 {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
   }
 }
 
-@keyframes float {
+/* ─────────────────────────────────────────────
+   VitalityField — CSS Particles (substitui Three.js)
+   Executa no compositor thread (off main thread)
+   ───────────────────────────────────────────── */
+.particle {
+  position: absolute;
+  border-radius: 50%;
+  pointer-events: none;
+  will-change: transform, opacity;
+}
 
-  0%,
-  100% {
-    transform: translateY(0);
-  }
+/* Pink particles — cor accent #CF2E78 — glow via filter:drop-shadow (GPU compositor thread) */
+.particle-pink-1 { width: 8px;  height: 8px;  background: rgba(207, 46, 120, 0.90); filter: drop-shadow(0 0 4px rgba(207, 46, 120, 0.6));  left: 14%;  top: 22%; animation: vf-float-a 6s   ease-in-out infinite; }
+.particle-pink-2 { width: 6px;  height: 6px;  background: rgba(207, 46, 120, 0.80); filter: drop-shadow(0 0 3px rgba(207, 46, 120, 0.5));  left: 71%;  top: 17%; animation: vf-float-b 8s   ease-in-out infinite; }
+.particle-pink-3 { width: 7px;  height: 7px;  background: rgba(207, 46, 120, 0.75); filter: drop-shadow(0 0 3px rgba(207, 46, 120, 0.5));  left: 44%;  top: 55%; animation: vf-float-c 7s   ease-in-out infinite; }
+.particle-pink-4 { width: 5px;  height: 5px;  background: rgba(207, 46, 120, 0.70); filter: drop-shadow(0 0 3px rgba(207, 46, 120, 0.4));  left: 87%;  top: 70%; animation: vf-float-a 9s   ease-in-out infinite 1s; }
+.particle-pink-5 { width: 6px;  height: 6px;  background: rgba(207, 46, 120, 0.80); filter: drop-shadow(0 0 4px rgba(207, 46, 120, 0.5));  left: 55%;  top: 35%; animation: vf-float-b 7.5s ease-in-out infinite 2s; }
 
-  50% {
-    transform: translateY(-20px);
+/* Blue particles — cor brand #4A6CF7 — glow via filter:drop-shadow (GPU compositor thread) */
+.particle-blue-1 { width: 7px;  height: 7px;  background: rgba(74, 108, 247, 0.80); filter: drop-shadow(0 0 4px rgba(74, 108, 247, 0.5));  left: 30%;  top: 42%; animation: vf-float-b 7s   ease-in-out infinite 0.5s; }
+.particle-blue-2 { width: 6px;  height: 6px;  background: rgba(74, 108, 247, 0.70); filter: drop-shadow(0 0 3px rgba(74, 108, 247, 0.4));  left: 62%;  top: 28%; animation: vf-float-c 8s   ease-in-out infinite 1.5s; }
+.particle-blue-3 { width: 8px;  height: 8px;  background: rgba(74, 108, 247, 0.65); filter: drop-shadow(0 0 4px rgba(74, 108, 247, 0.4));  left: 9%;   top: 65%; animation: vf-float-a 6s   ease-in-out infinite 2s; }
+.particle-blue-4 { width: 5px;  height: 5px;  background: rgba(74, 108, 247, 0.75); filter: drop-shadow(0 0 3px rgba(74, 108, 247, 0.5));  left: 82%;  top: 48%; animation: vf-float-c 9.5s ease-in-out infinite 0.8s; }
+
+@keyframes vf-float-a {
+  0%,  100% { transform: translateY(0);                          opacity: 0.55; }
+  50%        { transform: translateY(-22px);                      opacity: 1; }
+}
+
+@keyframes vf-float-b {
+  0%,  100% { transform: translateY(0)     translateX(0);        opacity: 0.45; }
+  50%        { transform: translateY(-16px) translateX(12px);     opacity: 0.95; }
+}
+
+@keyframes vf-float-c {
+  0%,  100% { transform: translateY(0)     translateX(0);        opacity: 0.50; }
+  33%        { transform: translateY(-14px) translateX(-8px);     opacity: 0.80; }
+  66%        { transform: translateY(-26px) translateX(6px);      opacity: 0.70; }
+}
+@keyframes fadeSlideUp {
+  from { opacity: 0; transform: translateY(16px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ─────────────────────────────────────────────
+   content-visibility: auto — skip layout/paint for off-screen sections
+   ───────────────────────────────────────────── */
+.below-fold {
+  content-visibility: auto;
+  contain-intrinsic-size: auto 600px;
+}
+
+/* prefers-reduced-motion: desativa animacoes para usuarios sensiveis */
+@media (prefers-reduced-motion: reduce) {
+  .particle-pink-1, .particle-pink-2, .particle-pink-3,
+  .particle-pink-4, .particle-pink-5,
+  .particle-blue-1, .particle-blue-2, .particle-blue-3,
+  .particle-blue-4 {
+    animation: none;
   }
 }

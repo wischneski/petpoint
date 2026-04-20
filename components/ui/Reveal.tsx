@@ -7,19 +7,24 @@ interface RevealProps {
 }
 
 export const Reveal: React.FC<RevealProps> = ({ children, width = "100%", delay = 0 }) => {
-  const [isVisible, setIsVisible] = useState(false);
+  const prefersReducedMotion = typeof window !== 'undefined'
+    && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  const [isVisible, setIsVisible] = useState(prefersReducedMotion);
   const ref = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
+    if (prefersReducedMotion) return;
+
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
           setIsVisible(true);
-          observer.disconnect(); // Only animate once
+          observer.disconnect();
         }
       },
       {
-        threshold: 0.1, // Trigger when 10% visible
+        threshold: 0.1,
         rootMargin: "0px 0px -50px 0px"
       }
     );
@@ -31,7 +36,11 @@ export const Reveal: React.FC<RevealProps> = ({ children, width = "100%", delay 
     return () => {
       if (ref.current) observer.unobserve(ref.current);
     };
-  }, []);
+  }, [prefersReducedMotion]);
+
+  if (prefersReducedMotion) {
+    return <div style={{ width }}>{children}</div>;
+  }
 
   return (
     <div 

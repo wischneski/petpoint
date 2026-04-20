@@ -4,9 +4,5 @@
 User-agent: *
 Allow: /
 
-# Bloquear arquivos desnecessários
-Disallow: /assets/js/
-Disallow: /assets/css/
-
 # Sitemap
-Sitemap: https://www.petpoint.com.br/sitemap.xml
+Sitemap: https://www.meupetpoint.com.br/sitemap.xml
