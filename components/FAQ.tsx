@@ -1,4 +1,6 @@
-import React, { useState } from 'react';
+'use client';
+
+import { useState } from 'react';
 import { ChevronDown } from 'lucide-react';
 import { Reveal } from './ui/Reveal';
 
@@ -34,7 +36,7 @@ const faqs: FAQItem[] = [
   },
 ];
 
-const FAQ: React.FC = () => {
+function FAQ() {
   const [openIdx, setOpenIdx] = useState<number | null>(null);
 
   const toggle = (idx: number) => setOpenIdx(openIdx === idx ? null : idx);

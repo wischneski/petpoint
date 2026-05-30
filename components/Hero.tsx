@@ -1,17 +1,14 @@
-import React from 'react';
 import { ArrowRight, MessageCircle } from 'lucide-react';
 import { Reveal } from './ui/Reveal';
 import { VitalityField } from './ui/VitalityField';
 
-export const Hero: React.FC = () => {
+export function Hero() {
   return (
     <section id="hero" className="relative min-h-[85vh] flex items-start justify-center overflow-hidden bg-brand-900 pt-24 md:pt-28">
 
-      {/* Gradient Overlay for text readability */}
-      <div className="absolute inset-0 bg-gradient-to-t from-brand-900 via-transparent to-brand-900/50 z-0 pointer-events-none" />
-      <div className="absolute inset-0 bg-gradient-to-r from-brand-900/80 via-transparent to-transparent z-0 pointer-events-none" />
+      <div className="absolute inset-0 bg-linear-to-t from-brand-900 via-transparent to-brand-900/50 z-0 pointer-events-none" />
+      <div className="absolute inset-0 bg-linear-to-r from-brand-900/80 via-transparent to-transparent z-0 pointer-events-none" />
 
-      {/* Particle Layer — above gradients, below text */}
       <VitalityField />
 
       <div className="container mx-auto px-6 relative z-10 pt-8 md:pt-12">
@@ -26,7 +23,7 @@ export const Hero: React.FC = () => {
           <Reveal delay={400}>
             <h1 className="font-serif text-5xl md:text-7xl lg:text-8xl font-medium text-white leading-[1.05] mb-8 tracking-tight">
               Cuidado completo<br />
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-white to-gray-400">para o</span> <br />
+              <span className="text-transparent bg-clip-text bg-linear-to-r from-white to-gray-400">para o</span> <br />
               <span className="text-accent-500 italic font-serif">Seu Melhor Amigo.</span>
             </h1>
           </Reveal>
@@ -65,11 +62,10 @@ export const Hero: React.FC = () => {
         </div>
       </div>
 
-      {/* Stylized Scroll Indicator */}
-      <div className="absolute bottom-10 left-6 flex items-center gap-4 text-white/30 hidden md:flex">
-        <span className="text-xs uppercase tracking-widest rotate-[-90deg]">Scroll</span>
-        <div className="h-16 w-px bg-gradient-to-b from-accent-500 to-transparent"></div>
+      <div className="absolute bottom-10 left-6 hidden md:flex items-center gap-4 text-white/30">
+        <span className="text-xs uppercase tracking-widest -rotate-90">Scroll</span>
+        <div className="h-16 w-px bg-linear-to-b from-accent-500 to-transparent"></div>
       </div>
     </section>
   );
-};
+}

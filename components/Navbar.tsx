@@ -1,6 +1,8 @@
-import React, { useState, useEffect } from 'react';
+'use client';
+
+import { useState, useEffect } from 'react';
 import { Menu, X, MapPin } from 'lucide-react';
-import { NavItem } from '../types';
+import type { NavItem } from '@/types';
 
 const navItems: NavItem[] = [
   { label: 'Início', href: '/' },
@@ -9,7 +11,7 @@ const navItems: NavItem[] = [
   { label: 'PetShop', href: '/#services' },
 ];
 
-export const Navbar: React.FC = () => {
+export function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 

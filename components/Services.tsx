@@ -1,30 +1,29 @@
-import React from 'react';
 import { Reveal } from './ui/Reveal';
 import { Activity, Scissors, ShoppingBag, ArrowRight } from 'lucide-react';
 
-const Services: React.FC = () => {
+export default function Services() {
   const services = [
     {
       id: 1,
       icon: Activity,
-      title: "Clínica Médica & Cirúrgica",
-      description: "Da prevenção a tratamentos complexos. Uma equipe preparada para diagnósticos rápidos e assertivos.",
-      image: "/images/services/clinica.webp"
+      title: 'Clínica Médica & Cirúrgica',
+      description: 'Da prevenção a tratamentos complexos. Uma equipe preparada para diagnósticos rápidos e assertivos.',
+      image: '/images/services/clinica.webp',
     },
     {
       id: 2,
       icon: Scissors,
-      title: "Centro de Estética",
-      description: "Mais que um banho, uma renovação. Utilizamos produtos premium e técnicas que reduzem o estresse.",
-      image: "/images/services/estetica.webp"
+      title: 'Centro de Estética',
+      description: 'Mais que um banho, uma renovação. Utilizamos produtos premium e técnicas que reduzem o estresse.',
+      image: '/images/services/estetica.webp',
     },
     {
       id: 3,
       icon: ShoppingBag,
-      title: "PetShop Premium",
-      description: "Nutrição de alta performance, farmácia completa e acessórios selecionados para segurança e conforto.",
-      image: "/images/services/petshop.webp"
-    }
+      title: 'PetShop Premium',
+      description: 'Nutrição de alta performance, farmácia completa e acessórios selecionados para segurança e conforto.',
+      image: '/images/services/petshop.webp',
+    },
   ];
 
   return (
@@ -47,8 +46,7 @@ const Services: React.FC = () => {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {services.map((service, index) => (
             <Reveal key={service.id} delay={index * 150}>
-              <div className="group relative bg-white rounded-3xl overflow-hidden shadow-xl hover:shadow-2xl transition-all duration-500 h-[500px] flex flex-col hover:-translate-y-2">
-                {/* Image Background */}
+              <div className="group relative bg-white rounded-3xl overflow-hidden shadow-xl hover:shadow-2xl transition-all duration-500 h-125 flex flex-col hover:-translate-y-2">
                 <div className="absolute inset-0 z-0">
                   <picture>
                     <source
@@ -65,10 +63,9 @@ const Services: React.FC = () => {
                       className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 grayscale group-hover:grayscale-0"
                     />
                   </picture>
-                  <div className="absolute inset-0 bg-gradient-to-t from-brand-900 via-brand-900/40 to-transparent opacity-90 group-hover:opacity-60 transition-opacity duration-500" />
+                  <div className="absolute inset-0 bg-linear-to-t from-brand-900 via-brand-900/40 to-transparent opacity-90 group-hover:opacity-60 transition-opacity duration-500" />
                 </div>
 
-                {/* Content Overlay */}
                 <div className="relative z-10 p-8 flex flex-col h-full text-white">
                   <div className="w-12 h-12 bg-white/10 backdrop-blur-md rounded-xl flex items-center justify-center mb-auto border border-white/20">
                     <service.icon className="w-6 h-6 text-white" />
@@ -95,6 +92,4 @@ const Services: React.FC = () => {
       </div>
     </section>
   );
-};
-
-export default Services;
+}

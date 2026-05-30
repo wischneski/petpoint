@@ -1,0 +1,8 @@
+# robots.txt para PetPoint Hospital Veterinário
+# Permite acesso a todos os crawlers
+
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://www.meupetpoint.com.br/sitemap.xml

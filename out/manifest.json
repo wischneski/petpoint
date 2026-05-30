@@ -1,0 +1,21 @@
+{
+  "name": "PetPoint Hospital Veterinário & Estética",
+  "short_name": "PetPoint",
+  "description": "Medicina de ponta e cuidado real para seu pet em Morro da Fumaça/SC",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0f172a",
+  "theme_color": "#CF2E78",
+  "icons": [
+    {
+      "src": "/android-chrome-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/android-chrome-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}

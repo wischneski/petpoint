@@ -1,12 +1,14 @@
-import React, { useEffect, useRef, useState } from 'react';
+'use client';
+
+import { useEffect, useRef, useState, type FC, type ReactNode } from 'react';
 
 interface RevealProps {
-  children: React.ReactNode;
-  width?: "fit-content" | "100%";
+  children: ReactNode;
+  width?: 'fit-content' | '100%';
   delay?: number;
 }
 
-export const Reveal: React.FC<RevealProps> = ({ children, width = "100%", delay = 0 }) => {
+export const Reveal: FC<RevealProps> = ({ children, width = '100%', delay = 0 }) => {
   const prefersReducedMotion = typeof window !== 'undefined'
     && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
@@ -23,15 +25,10 @@ export const Reveal: React.FC<RevealProps> = ({ children, width = "100%", delay 
           observer.disconnect();
         }
       },
-      {
-        threshold: 0.1,
-        rootMargin: "0px 0px -50px 0px"
-      }
+      { threshold: 0.1, rootMargin: '0px 0px -50px 0px' }
     );
 
-    if (ref.current) {
-      observer.observe(ref.current);
-    }
+    if (ref.current) observer.observe(ref.current);
 
     return () => {
       if (ref.current) observer.unobserve(ref.current);
@@ -43,17 +40,10 @@ export const Reveal: React.FC<RevealProps> = ({ children, width = "100%", delay 
   }
 
   return (
-    <div 
-      ref={ref} 
-      style={{ 
-        width: width, 
-        position: 'relative', 
-        zIndex: isVisible ? 1 : 0 
-      }}
-    >
+    <div ref={ref} style={{ width, position: 'relative', zIndex: isVisible ? 1 : 0 }}>
       <div
         className={`transform transition-all duration-1000 ease-out ${
-          isVisible ? "translate-y-0 opacity-100" : "translate-y-12 opacity-0"
+          isVisible ? 'translate-y-0 opacity-100' : 'translate-y-12 opacity-0'
         }`}
         style={{ transitionDelay: `${delay}ms` }}
       >

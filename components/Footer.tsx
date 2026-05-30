@@ -1,19 +1,17 @@
-import React from 'react';
-import { Instagram, MapPin, Clock, Phone } from 'lucide-react';
+import { MapPin, Clock, Phone } from 'lucide-react';
+import { InstagramIcon } from './ui/InstagramIcon';
 
-const Footer: React.FC = () => {
+export default function Footer() {
   return (
     <footer className="relative bg-brand-900 text-white pt-24 pb-12 z-10 below-fold overflow-hidden">
-      {/* Pink glow — bottom to top */}
       <div
-        className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[900px] h-[550px] pointer-events-none"
+        className="absolute bottom-0 left-1/2 -translate-x-1/2 w-225 h-137.5 pointer-events-none"
         style={{ background: 'radial-gradient(ellipse at bottom, rgba(207,46,120,0.45) 0%, rgba(207,46,120,0.20) 35%, rgba(207,46,120,0.06) 60%, transparent 80%)' }}
       />
 
       <div className="container mx-auto px-6 relative z-10">
 
-        {/* Main Footer CTA */}
-        <div className="flex flex-col md:flex-row items-center justify-between border-b border-white/[0.07] pb-16 mb-16 gap-10">
+        <div className="flex flex-col md:flex-row items-center justify-between border-b border-white/7 pb-16 mb-16 gap-10">
           <div className="max-w-2xl text-center md:text-left">
             <h2 className="font-serif text-3xl md:text-4xl mb-4">
               O cuidado que seu melhor amigo merece está a um clique de distância.
@@ -30,7 +28,6 @@ const Footer: React.FC = () => {
           </a>
         </div>
 
-        {/* Footer Columns */}
         <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-16">
           <div className="col-span-1 md:col-span-1">
             <div className="flex items-center gap-1 mb-6">
@@ -66,7 +63,6 @@ const Footer: React.FC = () => {
                 <div>
                   <p>Segunda a Sexta: 08h - 18h</p>
                   <p>Sábado: 08h - 12h</p>
-                  <p className="text-brand-400 font-medium mt-1"></p>
                 </div>
               </li>
             </ul>
@@ -80,19 +76,16 @@ const Footer: React.FC = () => {
               rel="noreferrer"
               className="inline-flex items-center gap-2 text-white/50 hover:text-accent-500 transition-colors"
             >
-              <Instagram className="w-6 h-6" />
+              <InstagramIcon className="w-6 h-6" />
               <span>@petpointanimal</span>
             </a>
           </div>
         </div>
 
-        {/* Copyright */}
-        <div className="text-center text-white/30 text-sm pt-8 border-t border-white/[0.06]">
+        <div className="text-center text-white/30 text-sm pt-8 border-t border-white/6">
           <p>&copy; {new Date().getFullYear()} PetPoint Clínica Veterinária & Estética. Todos os direitos reservados.</p>
         </div>
       </div>
     </footer>
   );
-};
-
-export default Footer;
+}

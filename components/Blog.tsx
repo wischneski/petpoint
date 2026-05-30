@@ -1,8 +1,8 @@
-import React from 'react';
 import { Reveal } from './ui/Reveal';
-import { Instagram, ArrowRight } from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
+import { InstagramIcon } from './ui/InstagramIcon';
 
-const Blog: React.FC = () => {
+export default function Blog() {
   return (
     <section className="relative py-32 bg-white z-10 below-fold">
       <div className="container mx-auto px-6">
@@ -20,7 +20,7 @@ const Blog: React.FC = () => {
               rel="noreferrer noopener"
               className="inline-flex items-center gap-3 px-8 py-4 bg-accent-600 hover:bg-accent-700 text-white font-semibold rounded-full shadow-lg transition-all hover:scale-105"
             >
-              <Instagram className="w-5 h-5" />
+              <InstagramIcon className="w-5 h-5" />
               Seguir @petpointanimal
               <ArrowRight className="w-4 h-4" />
             </a>
@@ -29,6 +29,4 @@ const Blog: React.FC = () => {
       </div>
     </section>
   );
-};
-
-export default Blog;
+}

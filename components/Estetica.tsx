@@ -1,4 +1,3 @@
-import React from 'react';
 import { Reveal } from './ui/Reveal';
 import { ArrowRight } from 'lucide-react';
 
@@ -23,20 +22,17 @@ const features = [
   },
 ];
 
-const Estetica: React.FC = () => {
+export default function Estetica() {
   return (
     <section id="estetica" className="py-32 bg-white relative overflow-hidden below-fold">
-      {/* Subtle background accent */}
       <div className="absolute top-0 left-0 w-1/2 h-full bg-brand-50/60 -skew-x-6 -translate-x-24 pointer-events-none" />
 
       <div className="container mx-auto px-6 relative z-10">
-
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
 
-          {/* Left — Image */}
           <Reveal delay={0} width="100%">
             <div className="relative">
-              <div className="rounded-3xl overflow-hidden aspect-[4/5] shadow-2xl shadow-brand-900/10">
+              <div className="rounded-3xl overflow-hidden aspect-4/5 shadow-2xl shadow-brand-900/10">
                 <picture>
                   <source
                     srcSet="/images/services/estetica-400.webp 400w, /images/services/estetica-800.webp 800w"
@@ -52,10 +48,9 @@ const Estetica: React.FC = () => {
                     className="w-full h-full object-cover hover:scale-105 transition-transform duration-700"
                   />
                 </picture>
-                <div className="absolute inset-0 bg-gradient-to-t from-brand-900/70 via-transparent to-transparent" />
+                <div className="absolute inset-0 bg-linear-to-t from-brand-900/70 via-transparent to-transparent" />
               </div>
 
-              {/* Floating badge */}
               <div className="absolute bottom-8 left-8 right-8 bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl p-5">
                 <p className="text-white font-serif text-lg italic leading-snug">
                   "Mais que um banho — uma experiência de renovação."
@@ -66,7 +61,6 @@ const Estetica: React.FC = () => {
             </div>
           </Reveal>
 
-          {/* Right — Content */}
           <div className="flex flex-col gap-10">
             <div>
               <Reveal>
@@ -88,12 +82,10 @@ const Estetica: React.FC = () => {
               </Reveal>
             </div>
 
-            {/* Features com imagens */}
             <div className="flex flex-col gap-4">
               {features.map((item, idx) => (
                 <Reveal key={idx} delay={200 + idx * 100}>
                   <div className="group flex items-start gap-5 p-4 rounded-2xl hover:bg-brand-50 transition-colors duration-300 cursor-default">
-                    {/* Thumbnail */}
                     <div className="shrink-0 w-20 h-20 rounded-2xl overflow-hidden shadow-md ring-2 ring-transparent group-hover:ring-accent-500/30 transition-all duration-300">
                       <img
                         src={item.image}
@@ -104,21 +96,15 @@ const Estetica: React.FC = () => {
                         className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                       />
                     </div>
-                    {/* Text */}
                     <div className="flex-1 min-w-0">
-                      <h3 className="font-bold text-brand-black text-base mb-1">
-                        {item.title}
-                      </h3>
-                      <p className="text-brand-gray/80 text-sm leading-relaxed">
-                        {item.desc}
-                      </p>
+                      <h3 className="font-bold text-brand-black text-base mb-1">{item.title}</h3>
+                      <p className="text-brand-gray/80 text-sm leading-relaxed">{item.desc}</p>
                     </div>
                   </div>
                 </Reveal>
               ))}
             </div>
 
-            {/* CTA */}
             <Reveal delay={550}>
               <a
                 href="https://wa.me/554899120084"
@@ -135,6 +121,4 @@ const Estetica: React.FC = () => {
       </div>
     </section>
   );
-};
-
-export default Estetica;
+}

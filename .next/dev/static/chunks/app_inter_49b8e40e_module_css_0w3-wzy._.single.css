@@ -1,0 +1,51 @@
+/* [project]/app/inter_49b8e40e.module.css [app-client] (css) */
+@font-face {
+  font-family: inter;
+  src: url("../media/inter_400_normal_latin-s.p.055ydel_y7o6i.woff2") format("woff2");
+  font-display: optional;
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: inter;
+  src: url("../media/inter_500_normal_latin-s.p.055ydel_y7o6i.woff2") format("woff2");
+  font-display: optional;
+  font-weight: 500;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: inter;
+  src: url("../media/inter_600_normal_latin-s.p.055ydel_y7o6i.woff2") format("woff2");
+  font-display: optional;
+  font-weight: 600;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: inter;
+  src: url("../media/inter_700_normal_latin-s.p.055ydel_y7o6i.woff2") format("woff2");
+  font-display: optional;
+  font-weight: 700;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: inter Fallback;
+  src: local(Arial);
+  ascent-override: 89.79%;
+  descent-override: 22.36%;
+  line-gap-override: 0.0%;
+  size-adjust: 107.89%;
+}
+
+.inter_49b8e40e-module__1_6l0a__className {
+  font-family: inter, inter Fallback;
+}
+
+.inter_49b8e40e-module__1_6l0a__variable {
+  --font-inter: "inter", "inter Fallback";
+}
+
+/*# sourceMappingURL=app_inter_49b8e40e_module_css_0w3-wzy._.single.css.map*/
