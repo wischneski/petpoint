@@ -59,8 +59,9 @@ export function Navbar() {
             <a
               key={item.label}
               href={item.href}
-              className={`text-sm font-medium transition-colors hover:text-accent-500 ${isScrolled ? 'text-brand-gray' : 'text-white/90 hover:text-white'
-                }`}
+              className={`text-sm font-medium transition-colors ${
+                isScrolled ? 'text-brand-gray hover:text-accent-500' : 'text-white/90 hover:text-white'
+              }`}
             >
               {item.label}
             </a>

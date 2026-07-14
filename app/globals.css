@@ -124,11 +124,24 @@
   contain-intrinsic-size: auto 600px;
 }
 
+/* ─────────────────────────────────────────────
+   Hero — animações CSS puras (sem JS, sem delay de hidratação)
+   H1 renderiza imediato (LCP = FCP). Sub e CTA animam via CSS.
+   ───────────────────────────────────────────── */
+.hero-sub {
+  animation: fadeSlideUp 0.5s ease-out 0.15s both;
+}
+.hero-cta {
+  animation: fadeSlideUp 0.5s ease-out 0.35s both;
+}
+
 @media (prefers-reduced-motion: reduce) {
   .particle-pink-1, .particle-pink-2, .particle-pink-3,
   .particle-pink-4, .particle-pink-5,
   .particle-blue-1, .particle-blue-2, .particle-blue-3,
-  .particle-blue-4 {
+  .particle-blue-4,
+  .hero-sub,
+  .hero-cta {
     animation: none;
   }
 }

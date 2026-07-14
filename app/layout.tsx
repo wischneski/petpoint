@@ -29,6 +29,7 @@ const playfair = localFont({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL('https://www.meupetpoint.com.br'),
   title: 'PetPoint | Hospital Veterinário & Estética em Morro da Fumaça/SC',
   description:
     'Clínica veterinária de excelência em Morro da Fumaça. Medicina de ponta, estética especializada e petshop premium. Corpo clínico qualificado, plantão 24h para emergências.',
@@ -51,7 +52,7 @@ export const metadata: Metadata = {
     title: 'PetPoint | Hospital Veterinário & Estética',
     description:
       'Medicina de ponta e cuidado real para seu pet. A melhor clínica veterinária de Morro da Fumaça/SC.',
-    images: [{ url: 'https://www.meupetpoint.com.br/images/meta/og-image.webp' }],
+    images: [{ url: '/images/meta/og-image.webp', width: 1200, height: 630, alt: 'PetPoint Hospital Veterinário e Estética' }],
     url: 'https://www.meupetpoint.com.br/',
     type: 'website',
     locale: 'pt_BR',
@@ -61,7 +62,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'PetPoint | Hospital Veterinário & Estética',
     description: 'Medicina de ponta e cuidado real para seu pet em Morro da Fumaça/SC',
-    images: ['https://www.meupetpoint.com.br/images/meta/og-image.webp'],
+    images: ['/images/meta/og-image.webp'],
   },
   icons: {
     icon: [
@@ -78,111 +79,199 @@ export const metadata: Metadata = {
   },
 };
 
-const localBusinessSchema = {
+// ─── Schema @graph unificado ────────────────────────────────────────────────
+// Único <script type="application/ld+json"> com todos os schemas interligados.
+// @id cross-links permitem que IAs e motores de busca entendam as relações.
+const structuredData = {
   '@context': 'https://schema.org',
-  '@type': ['LocalBusiness', 'VeterinaryCare'],
-  '@id': 'https://www.meupetpoint.com.br/#business',
-  name: 'PetPoint Hospital Veterinário & Estética',
-  image: 'https://www.meupetpoint.com.br/images/meta/logo.webp',
-  description:
-    'Clínica veterinária de excelência em Morro da Fumaça/SC. Medicina de ponta, estética especializada e petshop premium.',
-  address: {
-    '@type': 'PostalAddress',
-    streetAddress: 'R. Teresa Mariana de Jesus, 135 - Centro',
-    addressLocality: 'Morro da Fumaça',
-    addressRegion: 'SC',
-    postalCode: '88830-000',
-    addressCountry: 'BR',
-  },
-  geo: {
-    '@type': 'GeoCoordinates',
-    latitude: '-28.6489',
-    longitude: '-49.2069',
-  },
-  url: 'https://www.meupetpoint.com.br',
-  telephone: '+55-48-99912-0084',
-  priceRange: '$$',
-  openingHoursSpecification: [
-    {
-      '@type': 'OpeningHoursSpecification',
-      dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'],
-      opens: '08:00',
-      closes: '19:00',
-    },
-    {
-      '@type': 'OpeningHoursSpecification',
-      dayOfWeek: 'Saturday',
-      opens: '08:00',
-      closes: '13:00',
-    },
-  ],
-  employee: [
-    {
-      '@type': 'Person',
-      name: 'Dr. Vinicius Wischneski',
-      jobTitle: 'Diretor Clínico — Oncologia e Cirurgia de Pequenos Animais',
-      hasCredential: {
-        '@type': 'EducationalOccupationalCredential',
-        credentialCategory: 'CRMV-SC 8434',
-      },
-    },
-    {
-      '@type': 'Person',
-      name: 'Dra. Nathalia',
-      jobTitle: 'Anestesia e Clínica Geral',
-      hasCredential: {
-        '@type': 'EducationalOccupationalCredential',
-        credentialCategory: 'CRMV-SC 14519',
-      },
-    },
-  ],
-  sameAs: ['https://instagram.com/petpointanimal'],
-};
+  '@graph': [
 
-const faqSchema = {
-  '@context': 'https://schema.org',
-  '@type': 'FAQPage',
-  mainEntity: [
+    // LocalBusiness + VeterinaryCare
     {
-      '@type': 'Question',
-      name: 'A PetPoint atende emergências sem agendamento prévio?',
-      acceptedAnswer: {
-        '@type': 'Answer',
-        text: 'Sim. A PetPoint possui atendimento de urgências e emergências sem necessidade de agendamento prévio. Entre em contato pelo WhatsApp (48) 99912-0084 para orientação imediata.',
+      '@type': ['LocalBusiness', 'VeterinaryCare'],
+      '@id': 'https://www.meupetpoint.com.br/#business',
+      name: 'PetPoint Hospital Veterinário & Estética',
+      alternateName: 'PetPoint',
+      description:
+        'Clínica veterinária de excelência em Morro da Fumaça/SC. Medicina de ponta, estética especializada e petshop premium com +14 anos de atuação.',
+      image: 'https://www.meupetpoint.com.br/images/meta/og-image.webp',
+      logo: {
+        '@type': 'ImageObject',
+        url: 'https://www.meupetpoint.com.br/images/meta/logo.webp',
       },
+      url: 'https://www.meupetpoint.com.br',
+      telephone: '+55-48-99912-0084',
+      priceRange: '$$',
+      foundingDate: '2012',
+      slogan: 'Amor com Precisão',
+      address: {
+        '@type': 'PostalAddress',
+        streetAddress: 'R. Teresa Mariana de Jesus, 135 - Centro',
+        addressLocality: 'Morro da Fumaça',
+        addressRegion: 'SC',
+        postalCode: '88830-000',
+        addressCountry: 'BR',
+      },
+      geo: {
+        '@type': 'GeoCoordinates',
+        latitude: '-28.6489',
+        longitude: '-49.2069',
+      },
+      openingHoursSpecification: [
+        {
+          '@type': 'OpeningHoursSpecification',
+          dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'],
+          opens: '08:00',
+          closes: '19:00',
+        },
+        {
+          '@type': 'OpeningHoursSpecification',
+          dayOfWeek: 'Saturday',
+          opens: '08:00',
+          closes: '13:00',
+        },
+      ],
+      employee: [
+        { '@id': 'https://www.meupetpoint.com.br/#vinicius' },
+        { '@id': 'https://www.meupetpoint.com.br/#nathalia' },
+      ],
+      sameAs: ['https://instagram.com/petpointanimal'],
+      hasMap: 'https://maps.google.com/?q=-28.6489,-49.2069',
+      dateModified: '2026-06-01',
     },
+
+    // Organization (para E-E-A-T e Knowledge Panel)
     {
-      '@type': 'Question',
-      name: 'Quais animais são atendidos na clínica?',
-      acceptedAnswer: {
-        '@type': 'Answer',
-        text: 'Atendemos cães, gatos e pequenos animais em todas as especialidades: clínica geral, cirurgia de pequenos animais, oncologia, odontologia veterinária e vacinação.',
+      '@type': 'Organization',
+      '@id': 'https://www.meupetpoint.com.br/#organization',
+      name: 'PetPoint Hospital Veterinário & Estética',
+      url: 'https://www.meupetpoint.com.br',
+      logo: {
+        '@type': 'ImageObject',
+        url: 'https://www.meupetpoint.com.br/images/meta/logo.webp',
       },
+      sameAs: ['https://instagram.com/petpointanimal'],
+      member: [
+        { '@id': 'https://www.meupetpoint.com.br/#vinicius' },
+        { '@id': 'https://www.meupetpoint.com.br/#nathalia' },
+      ],
+      dateModified: '2026-06-01',
     },
+
+    // Person — Dr. Vinicius Wischneski (autor especialista para GEO/E-E-A-T)
     {
-      '@type': 'Question',
-      name: 'Posso acompanhar meu pet durante a consulta?',
-      acceptedAnswer: {
-        '@type': 'Answer',
-        text: 'Sim. Tutores são bem-vindos durante a consulta clínica. Em procedimentos cirúrgicos, a equipe mantém o tutor informado em todos os momentos.',
+      '@type': 'Person',
+      '@id': 'https://www.meupetpoint.com.br/#vinicius',
+      name: 'Dr. Vinicius Wischneski',
+      jobTitle: 'Diretor Clínico — Médico Veterinário',
+      description:
+        'Médico Veterinário especialista em Oncologia e Cirurgia de Pequenos Animais. Diretor Clínico da PetPoint com registro CRMV-SC 8434.',
+      image: 'https://www.meupetpoint.com.br/images/team/vini.webp',
+      hasCredential: {
+        '@type': 'EducationalOccupationalCredential',
+        credentialCategory: 'Registro Profissional',
+        recognizedBy: {
+          '@type': 'Organization',
+          name: 'Conselho Regional de Medicina Veterinária de Santa Catarina',
+          alternateName: 'CRMV-SC',
+        },
+        identifier: 'CRMV-SC 8434',
       },
+      knowsAbout: [
+        'Oncologia Veterinária',
+        'Cirurgia de Pequenos Animais',
+        'Clínica Veterinária Geral',
+        'Diagnóstico Clínico Veterinário',
+        'Medicina Veterinária Preventiva',
+        'Saúde Animal',
+      ],
+      worksFor: { '@id': 'https://www.meupetpoint.com.br/#business' },
+      dateModified: '2026-06-01',
     },
+
+    // Person — Dra. Nathalia
     {
-      '@type': 'Question',
-      name: 'Qual a diferença entre a PetPoint e uma clínica comum?',
-      acceptedAnswer: {
-        '@type': 'Answer',
-        text: 'A PetPoint reúne em um único espaço: clínica veterinária com corpo clínico especializado em oncologia e cirurgia, centro de estética com trato humanizado e petshop premium.',
+      '@type': 'Person',
+      '@id': 'https://www.meupetpoint.com.br/#nathalia',
+      name: 'Dra. Nathalia',
+      jobTitle: 'Médica Veterinária — Anestesia e Clínica Geral',
+      image: 'https://www.meupetpoint.com.br/images/team/nat.webp',
+      hasCredential: {
+        '@type': 'EducationalOccupationalCredential',
+        credentialCategory: 'Registro Profissional',
+        recognizedBy: {
+          '@type': 'Organization',
+          name: 'Conselho Regional de Medicina Veterinária de Santa Catarina',
+          alternateName: 'CRMV-SC',
+        },
+        identifier: 'CRMV-SC 14519',
       },
+      knowsAbout: [
+        'Anestesiologia Veterinária',
+        'Clínica Geral Veterinária',
+        'Medicina Interna Veterinária',
+      ],
+      worksFor: { '@id': 'https://www.meupetpoint.com.br/#business' },
+      dateModified: '2026-06-01',
     },
+
+    // FAQPage — sincronizado com o componente FAQ.tsx (6 perguntas)
     {
-      '@type': 'Question',
-      name: 'A clínica realiza cirurgias de alta complexidade?',
-      acceptedAnswer: {
-        '@type': 'Answer',
-        text: 'Sim. A PetPoint é a única clínica de Morro da Fumaça com capacidade cirúrgica para procedimentos de alta complexidade, incluindo oncologia e cirurgias gerais de pequenos animais.',
-      },
+      '@type': 'FAQPage',
+      '@id': 'https://www.meupetpoint.com.br/#faq',
+      dateModified: '2026-06-01',
+      mainEntity: [
+        {
+          '@type': 'Question',
+          name: 'A PetPoint atende emergências sem agendamento prévio?',
+          acceptedAnswer: {
+            '@type': 'Answer',
+            text: 'Sim. A PetPoint possui atendimento de urgências e emergências sem necessidade de agendamento prévio. Entre em contato pelo WhatsApp (48) 99912-0084 para orientação imediata.',
+          },
+        },
+        {
+          '@type': 'Question',
+          name: 'Quais animais são atendidos na clínica veterinária PetPoint?',
+          acceptedAnswer: {
+            '@type': 'Answer',
+            text: 'Atendemos cães, gatos e pequenos animais em todas as especialidades: clínica geral, cirurgia de pequenos animais, oncologia, odontologia veterinária e vacinação.',
+          },
+        },
+        {
+          '@type': 'Question',
+          name: 'Posso acompanhar meu pet durante a consulta veterinária?',
+          acceptedAnswer: {
+            '@type': 'Answer',
+            text: 'Sim. Tutores são bem-vindos durante a consulta clínica. Em procedimentos cirúrgicos, a equipe mantém o tutor informado em todos os momentos.',
+          },
+        },
+        {
+          '@type': 'Question',
+          name: 'Qual a diferença entre a PetPoint e uma clínica veterinária comum?',
+          acceptedAnswer: {
+            '@type': 'Answer',
+            text: 'A PetPoint reúne em um único espaço: clínica veterinária com corpo clínico especializado em oncologia e cirurgia, centro de estética com trato humanizado e petshop premium — eliminando a necessidade de deslocamentos múltiplos.',
+          },
+        },
+        {
+          '@type': 'Question',
+          name: 'Como funciona o serviço de banho e tosa na PetPoint?',
+          acceptedAnswer: {
+            '@type': 'Answer',
+            text: 'O banho e tosa é realizado com produtos Pelôncio, por profissionais treinados no manejo humanizado. Agendamento pelo WhatsApp da loja: (48) 99955-6555.',
+          },
+        },
+        {
+          '@type': 'Question',
+          name: 'A PetPoint realiza cirurgias veterinárias de alta complexidade?',
+          acceptedAnswer: {
+            '@type': 'Answer',
+            text: 'Sim. A PetPoint é a única clínica de Morro da Fumaça com capacidade cirúrgica para procedimentos de alta complexidade, incluindo oncologia e cirurgias gerais de pequenos animais.',
+          },
+        },
+      ],
     },
+
   ],
 };
 
@@ -208,11 +297,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
         <meta name="theme-color" content="#CF2E78" />
         <script
           type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusinessSchema) }}
-        />
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
         />
         <script
           type="speculationrules"
