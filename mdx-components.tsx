@@ -1,10 +1,14 @@
 /**
- * lib/mdx-components.tsx — Custom MDX Components
+ * mdx-components.tsx — Global MDX Component Overrides
  *
- * Mapeia elementos HTML nativos para componentes React customizados
- * usados durante a renderização do MDX, com um tratamento editorial
- * premium (estilo newsletter): âncoras em headings, callouts, divisores
- * decorativos e tabelas com scroll.
+ * Arquivo de convenção do @next/mdx (App Router): o `useMDXComponents`
+ * exportado aqui é aplicado automaticamente a TODO conteúdo .mdx
+ * compilado no projeto, sem precisar passar `components` manualmente
+ * em cada render. Precisa estar na raiz do projeto (ou em src/).
+ *
+ * Estilo editorial premium (newsletter): âncoras em headings, callouts,
+ * divisores decorativos e tabelas com scroll. Os headings recebem `id`
+ * automaticamente via rehype-slug (configurado em next.config.ts).
  *
  * Referência: https://nextjs.org/docs/app/building-your-application/configuring/mdx#using-custom-styles-and-components
  */
@@ -12,7 +16,6 @@
 import type { MDXComponents } from 'mdx/types';
 import { Link as LinkIcon, PawPrint } from 'lucide-react';
 
-// Headings com âncora visível no hover (id vem do rehype-slug)
 function Heading({
   as: Tag,
   id,
@@ -57,9 +60,9 @@ function Divider() {
   );
 }
 
-export const mdxComponents: MDXComponents = {
-  h2: (props) => <Heading as="h2" {...props} />,
-  h3: (props) => <Heading as="h3" {...props} />,
+const blogComponents: MDXComponents = {
+  h2: (props) => <Heading as="h2" {...(props as { id?: string; children: React.ReactNode })} />,
+  h3: (props) => <Heading as="h3" {...(props as { id?: string; children: React.ReactNode })} />,
 
   p: ({ children }) => (
     <p className="article-paragraph text-brand-gray leading-[1.85] mb-6">{children}</p>
@@ -130,3 +133,10 @@ export const mdxComponents: MDXComponents = {
     <code className="text-accent-600 bg-brand-50 px-1.5 py-0.5 rounded text-[0.9em]">{children}</code>
   ),
 };
+
+export function useMDXComponents(components: MDXComponents): MDXComponents {
+  return {
+    ...components,
+    ...blogComponents,
+  };
+}

@@ -14,7 +14,6 @@ import { ArrowLeft } from 'lucide-react';
 import { getAllPosts } from '@/features/blog/lib/mdx';
 import { BlogList } from '@/features/blog/components/BlogList';
 import { BlogSectionTabs } from '@/features/blog/components/BlogSectionTabs';
-import { BlogSearch } from '@/features/blog/components/BlogSearch';
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://www.meupetpoint.com.br'),
@@ -78,13 +77,11 @@ export default function BlogPage() {
 
       {/* Content */}
       <section className="container mx-auto px-6 py-20">
-        <BlogSearch>
-          {posts.length === 0 ? (
-            <p className="text-brand-gray text-center py-20">Nenhum artigo publicado ainda.</p>
-          ) : (
-            <BlogList posts={posts} currentPage={1} totalPages={1} />
-          )}
-        </BlogSearch>
+        {posts.length === 0 ? (
+          <p className="text-brand-gray text-center py-20">Nenhum artigo publicado ainda.</p>
+        ) : (
+          <BlogList posts={posts} currentPage={1} totalPages={1} />
+        )}
       </section>
 
       {/* Back to home */}

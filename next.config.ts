@@ -1,4 +1,5 @@
 import type { NextConfig } from 'next';
+import createMDX from '@next/mdx';
 
 const nextConfig: NextConfig = {
   output: 'export',
@@ -6,13 +7,14 @@ const nextConfig: NextConfig = {
   images: {
     unoptimized: true,
   },
-  webpack: (config) => {
-    // O drive do projeto está formatado em exFAT, que não suporta as
-    // operações de reparse point usadas pelo enhanced-resolve para checar
-    // symlinks a cada módulo (causa EISDIR em readlink no Windows).
-    config.resolve.symlinks = false;
-    return config;
-  },
+  pageExtensions: ['js', 'jsx', 'md', 'mdx', 'ts', 'tsx'],
 };
 
-export default nextConfig;
+const withMDX = createMDX({
+  options: {
+    remarkPlugins: ['remark-gfm'],
+    rehypePlugins: ['rehype-slug'],
+  },
+});
+
+export default withMDX(nextConfig);

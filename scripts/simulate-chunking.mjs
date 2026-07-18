@@ -16,8 +16,8 @@
 
 import fs from 'fs';
 import path from 'path';
-import matter from 'gray-matter';
 import { RecursiveCharacterTextSplitter } from '@langchain/textsplitters';
+import { POSTS_META } from '../features/blog/lib/posts-data.ts';
 
 const BLOG_CONTENT_DIR = path.join(process.cwd(), 'content', 'blog');
 
@@ -44,31 +44,25 @@ const CONFIGS = [
 ];
 
 async function main() {
-  const slugs = fs
-    .readdirSync(BLOG_CONTENT_DIR)
-    .filter((dir) => fs.existsSync(path.join(BLOG_CONTENT_DIR, dir, 'index.mdx')));
+  for (const meta of POSTS_META) {
+    if (!meta.published) continue;
 
-  for (const slug of slugs) {
-    const raw = fs.readFileSync(path.join(BLOG_CONTENT_DIR, slug, 'index.mdx'), 'utf-8');
-    const { data, content } = matter(raw);
-    if (!data.published) continue;
+    const filePath = path.join(BLOG_CONTENT_DIR, meta.slug, 'index.mdx');
+    const content = fs.existsSync(filePath) ? fs.readFileSync(filePath, 'utf-8') : '';
 
-    const faqText = (data.faqs ?? [])
+    const faqText = (meta.faqs ?? [])
       .map((faq) => `Pergunta: ${faq.question}\nResposta: ${faq.answer}`)
       .join('\n\n');
 
-    // Mesmo tratamento que features/blog/lib/mdx.ts aplica antes de renderizar:
-    // remove o H1 inicial (o título já aparece no <h1> do hero da página).
-    const bodyWithoutH1 = content.replace(/^\s*#\s+.+\r?\n/, '').trimStart();
-
     // Texto completo como um crawler veria: título + corpo + FAQ (a mesma
-    // ordem em que aparecem na página renderizada)
-    const fullText = [`# ${data.title}`, markdownToPlainText(bodyWithoutH1), '## Perguntas frequentes', faqText]
+    // ordem em que aparecem na página renderizada). O corpo do .mdx já não
+    // tem H1 nem frontmatter (metadados vivem em posts-data.ts).
+    const fullText = [`# ${meta.title}`, markdownToPlainText(content), '## Perguntas frequentes', faqText]
       .filter(Boolean)
       .join('\n\n');
 
     console.log(`\n${'='.repeat(70)}`);
-    console.log(`ARTIGO: ${slug}  (${fullText.length} caracteres no total)`);
+    console.log(`ARTIGO: ${meta.slug}  (${fullText.length} caracteres no total)`);
     console.log('='.repeat(70));
 
     for (const config of CONFIGS) {

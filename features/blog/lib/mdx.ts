@@ -1,30 +1,21 @@
 /**
  * lib/mdx.ts — Blog Data Layer (build-time only)
  *
- * Lê e parseia os arquivos .mdx do diretório content/blog/. Como o projeto
- * usa `output: 'export'` (site estático), todas as operações de leitura de
- * arquivo acontecem exclusivamente em build time — nunca no cliente.
- *
- * Padrão usado: Repository Pattern dentro do slice blog.
+ * Lê os metadados de posts-data.ts e o corpo bruto de content/blog/{slug}/index.mdx
+ * (usado para extrair headings/TOC e texto puro — não para renderizar, isso
+ * acontece via import estático do .mdx compilado pelo @next/mdx, em
+ * app/blog/[slug]/page.tsx). Como o projeto usa `output: 'export'`, toda
+ * leitura de arquivo acontece em build time — nunca no cliente.
  */
 
 import fs from 'fs';
 import path from 'path';
-import matter from 'gray-matter';
 import GithubSlugger from 'github-slugger';
+import { POSTS_META } from './posts-data';
 import type { BlogPost, BlogPostMeta, BlogFilters, TocHeading } from '../types';
 
 const BLOG_CONTENT_DIR = path.join(process.cwd(), 'content', 'blog');
 const PLACEHOLDER_COVER = '/images/blog/placeholder-cover.svg';
-
-/**
- * stripLeadingH1(content)
- * O corpo do artigo já exibe o título no header da página (hero), então
- * remove o primeiro `# Título` do MDX para evitar H1 duplicado.
- */
-function stripLeadingH1(content: string): string {
-  return content.replace(/^\s*#\s+.+\r?\n/, '').trimStart();
-}
 
 /**
  * extractHeadings(content)
@@ -50,29 +41,25 @@ function extractHeadings(content: string): TocHeading[] {
 
 /**
  * getAllPostSlugs()
- * Lê o diretório content/blog/ e retorna todos os slugs disponíveis.
+ * Retorna todos os slugs cadastrados em posts-data.ts.
  * Usado em generateStaticParams() para gerar páginas estáticas.
  */
 export function getAllPostSlugs(): string[] {
-  return fs
-    .readdirSync(BLOG_CONTENT_DIR)
-    .filter((dir) => fs.existsSync(path.join(BLOG_CONTENT_DIR, dir, 'index.mdx')));
+  return POSTS_META.map((post) => post.slug);
 }
 
 /**
  * getPostBySlug(slug)
- * Lê e parseia o arquivo index.mdx de um artigo específico.
- * Se a imagem de capa declarada no frontmatter ainda não existir em
- * public/, usa uma capa placeholder no lugar (evita <img> quebrada).
+ * Busca os metadados em posts-data.ts e lê o corpo bruto do .mdx (para
+ * headings/TOC e extração de texto puro). Se a imagem de capa declarada
+ * ainda não existir em public/, usa uma capa placeholder no lugar.
  */
 export function getPostBySlug(slug: string): BlogPost | null {
-  const filePath = path.join(BLOG_CONTENT_DIR, slug, 'index.mdx');
-  if (!fs.existsSync(filePath)) return null;
+  const meta = POSTS_META.find((post) => post.slug === slug);
+  if (!meta) return null;
 
-  const fileContent = fs.readFileSync(filePath, 'utf-8');
-  const { data, content: rawContent } = matter(fileContent);
-  const meta = data as BlogPostMeta;
-  const content = stripLeadingH1(rawContent);
+  const filePath = path.join(BLOG_CONTENT_DIR, slug, 'index.mdx');
+  const content = fs.existsSync(filePath) ? fs.readFileSync(filePath, 'utf-8') : '';
 
   const coverPath = path.join(process.cwd(), 'public', meta.coverImage);
   const coverImage = fs.existsSync(coverPath) ? meta.coverImage : PLACEHOLDER_COVER;

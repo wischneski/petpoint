@@ -8,6 +8,7 @@
  * Estratégia: Static Generation (compatível com output: 'export')
  */
 
+import type { ComponentType } from 'react';
 import { notFound } from 'next/navigation';
 import type { Metadata } from 'next';
 import Link from 'next/link';
@@ -20,6 +21,26 @@ import { BlogFAQ } from '@/features/blog/components/BlogFAQ';
 import { TableOfContents } from '@/features/blog/components/TableOfContents';
 import { ReadingProgressBar } from '@/features/blog/components/ReadingProgressBar';
 import { CopyArticleButton } from '@/features/blog/components/CopyArticleButton';
+
+// Import estático de cada corpo .mdx — compilado em build time pelo
+// @next/mdx. Adicionar uma linha aqui ao criar um novo artigo.
+import LongevidadePrevencaoContent from '@/content/blog/longevidade-prevencao/index.mdx';
+import LinguagemFelinosContent from '@/content/blog/linguagem-felinos/index.mdx';
+import AlimentacaoNaturalContent from '@/content/blog/alimentacao-natural/index.mdx';
+import PetpointNovaFaseContent from '@/content/blog/petpoint-nova-fase/index.mdx';
+import ComoEscovarDentesContent from '@/content/blog/como-escovar-dentes/index.mdx';
+import SinaisDorSilenciosaContent from '@/content/blog/sinais-dor-silenciosa/index.mdx';
+import VacinasObrigatoriasFilhotesContent from '@/content/blog/vacinas-obrigatorias-filhotes/index.mdx';
+
+const CONTENT_REGISTRY: Record<string, ComponentType> = {
+  'longevidade-prevencao': LongevidadePrevencaoContent,
+  'linguagem-felinos': LinguagemFelinosContent,
+  'alimentacao-natural': AlimentacaoNaturalContent,
+  'petpoint-nova-fase': PetpointNovaFaseContent,
+  'como-escovar-dentes': ComoEscovarDentesContent,
+  'sinais-dor-silenciosa': SinaisDorSilenciosaContent,
+  'vacinas-obrigatorias-filhotes': VacinasObrigatoriasFilhotesContent,
+};
 
 interface Props {
   params: Promise<{ slug: string }>;
@@ -71,7 +92,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 export default async function BlogPostPage({ params }: Props) {
   const { slug } = await params;
   const post = getPostBySlug(slug);
-  if (!post || !post.published) notFound();
+  const Content = CONTENT_REGISTRY[slug];
+  if (!post || !post.published || !Content) notFound();
 
   const canonicalUrl = `https://www.meupetpoint.com.br/blog/${post.slug}`;
   const authorProfile = getAuthorProfile(post.author);
@@ -182,7 +204,7 @@ export default async function BlogPostPage({ params }: Props) {
           <TableOfContents headings={post.headings} />
 
           <div className="min-w-0 max-w-[720px]">
-            <BlogPostBody content={post.content} slug={post.slug} title={post.title} url={canonicalUrl} />
+            <BlogPostBody Content={Content} slug={post.slug} title={post.title} url={canonicalUrl} />
 
             {/* Bio do autor + CTA */}
             <div className="mt-14 pt-10 border-t border-brand-100">

@@ -17,6 +17,10 @@ import { getAllSpecialtySlugs } from '@/features/especialidades/data';
 const BASE_URL = 'https://www.meupetpoint.com.br';
 type SitemapEntry = MetadataRoute.Sitemap[number];
 
+// Necessário com output: 'export' — sem isso o Next.js recusa gerar a rota
+// em build estático (exige declarar explicitamente que não é dinâmica).
+export const dynamic = 'force-static';
+
 export default function sitemap(): MetadataRoute.Sitemap {
   const posts = getAllPosts();
   const specialtySlugs = getAllSpecialtySlugs();

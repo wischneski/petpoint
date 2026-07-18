@@ -43,7 +43,7 @@ export interface TocHeading {
 
 /** Post completo, com o conteúdo MDX como string serializada */
 export interface BlogPost extends BlogPostMeta {
-  content: string;         // conteúdo MDX bruto ou serializado (gray-matter)
+  content: string;         // corpo bruto do .mdx (sem frontmatter) — usado para TOC/texto puro, não para renderizar
   headings: TocHeading[];  // headings h2/h3 extraídos para o sumário
 }
 

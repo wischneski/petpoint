@@ -1,40 +1,29 @@
 /**
  * components/BlogPostBody.tsx — Article Body Renderer
  *
- * Renderiza o conteúdo MDX de um artigo com tipografia editorial premium.
- * Usa next-mdx-remote/rsc, compatível com `output: 'export'`.
- *
- * remark-gfm habilita tabelas/strikethrough (usados no conteúdo);
- * rehype-slug gera os `id` dos headings, consumidos pelo Sumário (TOC)
- * e pelos links de âncora dos componentes h2/h3 custom.
+ * Renderiza o componente MDX de um artigo (já compilado em build time
+ * pelo @next/mdx a partir de content/blog/{slug}/index.mdx — ver o
+ * CONTENT_REGISTRY em app/blog/[slug]/page.tsx). Os componentes
+ * customizados (headings com âncora, callouts, tabelas etc.) vêm do
+ * mdx-components.tsx na raiz do projeto, aplicados automaticamente
+ * pelo @next/mdx a qualquer .mdx compilado — não precisam ser passados
+ * manualmente aqui.
  */
 
-import { MDXRemote } from 'next-mdx-remote/rsc';
-import remarkGfm from 'remark-gfm';
-import rehypeSlug from 'rehype-slug';
-import { mdxComponents } from '../lib/mdx-components';
+import type { ComponentType } from 'react';
 import { ArticleActions } from './ArticleActions';
 
 interface BlogPostBodyProps {
-  content: string;
+  Content: ComponentType;
   slug: string;
   title: string;
   url: string;
 }
 
-export function BlogPostBody({ content, slug, title, url }: BlogPostBodyProps) {
+export function BlogPostBody({ Content, slug, title, url }: BlogPostBodyProps) {
   return (
     <article className="article-content text-[1.0625rem]">
-      <MDXRemote
-        source={content}
-        components={mdxComponents}
-        options={{
-          mdxOptions: {
-            remarkPlugins: [remarkGfm],
-            rehypePlugins: [rehypeSlug],
-          },
-        }}
-      />
+      <Content />
       <ArticleActions slug={slug} title={title} url={url} />
     </article>
   );
