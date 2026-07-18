@@ -1,31 +1,9 @@
+import Link from 'next/link';
 import { Reveal } from './ui/Reveal';
-import { Activity, Scissors, ShoppingBag, ArrowRight } from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
+import { servicePillars } from '@/features/services/data';
 
 export default function Services() {
-  const services = [
-    {
-      id: 1,
-      icon: Activity,
-      title: 'Clínica Médica & Cirúrgica',
-      description: 'Da prevenção a tratamentos complexos. Uma equipe preparada para diagnósticos rápidos e assertivos.',
-      image: '/images/services/clinica.webp',
-    },
-    {
-      id: 2,
-      icon: Scissors,
-      title: 'Centro de Estética',
-      description: 'Mais que um banho, uma renovação. Utilizamos produtos premium e técnicas que reduzem o estresse.',
-      image: '/images/services/estetica.webp',
-    },
-    {
-      id: 3,
-      icon: ShoppingBag,
-      title: 'PetShop Premium',
-      description: 'Nutrição de alta performance, farmácia completa e acessórios selecionados para segurança e conforto.',
-      image: '/images/services/petshop.webp',
-    },
-  ];
-
   return (
     <section id="services" className="relative py-32 bg-brand-silver z-10 below-fold">
       <div className="container mx-auto px-6">
@@ -44,9 +22,12 @@ export default function Services() {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          {services.map((service, index) => (
-            <Reveal key={service.id} delay={index * 150}>
-              <div className="group relative bg-white rounded-3xl overflow-hidden shadow-xl hover:shadow-2xl transition-all duration-500 h-125 flex flex-col hover:-translate-y-2">
+          {servicePillars.map((service, index) => (
+            <Reveal key={service.slug} delay={index * 150}>
+              <Link
+                href={service.href}
+                className="group relative bg-white rounded-3xl overflow-hidden shadow-xl hover:shadow-2xl transition-all duration-500 h-125 flex flex-col hover:-translate-y-2"
+              >
                 <div className="absolute inset-0 z-0">
                   <picture>
                     <source
@@ -79,13 +60,13 @@ export default function Services() {
                       {service.description}
                     </p>
 
-                    <button className="flex items-center gap-3 text-sm font-bold uppercase tracking-widest text-accent-400 group-hover:text-white transition-colors">
+                    <span className="flex items-center gap-3 text-sm font-bold uppercase tracking-widest text-accent-400 group-hover:text-white transition-colors">
                       Explorar
                       <ArrowRight className="w-4 h-4" />
-                    </button>
+                    </span>
                   </div>
                 </div>
-              </div>
+              </Link>
             </Reveal>
           ))}
         </div>

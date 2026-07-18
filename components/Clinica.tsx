@@ -1,17 +1,20 @@
 'use client';
 
 import { useRef, useState } from 'react';
+import Link from 'next/link';
 import { Reveal } from './ui/Reveal';
 import { ArrowRight, ShieldCheck, ChevronLeft, ChevronRight } from 'lucide-react';
 
 const specialties = [
-  { image: '/images/clinica/clinica-geral.webp',   title: 'Clínica Geral',             sub: 'Prevenção & Diagnóstico',   desc: 'Consultas de rotina, check-ups preventivos e diagnóstico clínico completo para todas as espécies.' },
-  { image: '/images/clinica/oncologia.webp',        title: 'Oncologia & Cirurgia',       sub: 'Alta Complexidade',         desc: 'Procedimentos cirúrgicos de alta complexidade e tratamento oncológico especializado em pequenos animais.' },
-  { image: '/images/clinica/odontologia.webp',      title: 'Odontologia Veterinária',    sub: 'Saúde Bucal',               desc: 'Profilaxia, extração, restaurações e cirurgias orais com equipamentos odontológicos específicos para pets.' },
-  { image: '/images/clinica/vacinacao.webp',        title: 'Vacinação',                  sub: 'Prevenção & Proteção',      desc: 'Calendário vacinal completo para cães e gatos, com vacinas importadas e nacionais, garantindo a proteção do seu pet em todas as fases da vida.' },
-  { image: '/images/clinica/raio-x.webp',           title: 'RAIO-X Digital',             sub: 'Diagnóstico por Imagem',    desc: 'Radiografias digitais de alta resolução com resultados imediatos, permitindo diagnósticos precisos e rápidos para o seu pet.' },
-  { image: '/images/clinica/ultrassonografia.webp', title: 'Ultrassonografia',           sub: 'Diagnóstico por Imagem',    desc: 'Exames ultrassonográficos com equipamento de última geração para avaliação de órgãos internos com segurança e precisão.' },
-  { image: '/images/clinica/urgencia.webp',         title: 'Urgências & Emergências',    sub: 'Atendimento 24h',           desc: 'Atendimento ágil para situações críticas. Nossa equipe está preparada para agir quando mais importa.' },
+  { slug: 'clinica-geral',           image: '/images/clinica/clinica-geral.webp',     title: 'Clínica Geral',             sub: 'Prevenção & Diagnóstico',   desc: 'Consultas de rotina, check-ups preventivos e diagnóstico clínico completo para todas as espécies.' },
+  { slug: 'oncologia-cirurgia',      image: '/images/clinica/oncologia.webp',         title: 'Oncologia & Cirurgia',       sub: 'Alta Complexidade',         desc: 'Procedimentos cirúrgicos de alta complexidade e tratamento oncológico especializado em pequenos animais.' },
+  { slug: 'odontologia',             image: '/images/clinica/odontologia.webp',       title: 'Odontologia Veterinária',    sub: 'Saúde Bucal',               desc: 'Profilaxia, extração, restaurações e cirurgias orais com equipamentos odontológicos específicos para pets.' },
+  { slug: 'vacinacao',               image: '/images/clinica/vacinacao.webp',         title: 'Vacinação',                  sub: 'Prevenção & Proteção',      desc: 'Calendário vacinal completo para cães e gatos, com vacinas importadas e nacionais, garantindo a proteção do seu pet em todas as fases da vida.' },
+  { slug: 'raio-x-digital',          image: '/images/clinica/raio-x.webp',            title: 'RAIO-X Digital',             sub: 'Diagnóstico por Imagem',    desc: 'Radiografias digitais de alta resolução com resultados imediatos, permitindo diagnósticos precisos e rápidos para o seu pet.' },
+  { slug: 'ultrassonografia',        image: '/images/clinica/ultrassonografia.webp',  title: 'Ultrassonografia',           sub: 'Diagnóstico por Imagem',    desc: 'Exames ultrassonográficos com equipamento de última geração para avaliação de órgãos internos com segurança e precisão.' },
+  { slug: 'endoscopia',              image: '/images/clinica/endoscopia.png',         title: 'Endoscopia',                 sub: 'Procedimento Não Invasivo', desc: 'Exame diagnóstico e terapêutico para visualização interna e remoção de corpos estranhos sem necessidade de cirurgia.' },
+  { slug: 'eletroquimioterapia',     image: '/images/clinica/eletroquimioterapia.png',title: 'Eletroquimioterapia',        sub: 'Tratamento Oncológico',    desc: 'Tecnologia avançada que potencializa a ação dos quimioterápicos diretamente nas células tumorais com alta eficácia.' },
+  { slug: 'urgencias-emergencias',   image: '/images/clinica/urgencia.webp',          title: 'Urgências & Emergências',    sub: 'Atendimento Rápido',        desc: 'Atendimento ágil para situações críticas. Nossa equipe está preparada para agir quando mais importa.' },
 ];
 
 const CARD_W = 280;
@@ -98,8 +101,9 @@ function Clinica() {
             const isRevealed = activeIdx === idx || hoverIdx === idx;
             return (
               <div key={idx} className="shrink-0" style={{ width: CARD_W, scrollSnapAlign: 'start' }}>
-                <div
-                  className="relative w-full rounded-2xl overflow-hidden cursor-pointer"
+                <Link
+                  href={`/blog/especialidades/${item.slug}`}
+                  className="relative w-full rounded-2xl overflow-hidden cursor-pointer block"
                   style={{ aspectRatio: '1 / 1' }}
                   onClick={() => setActiveIdx(activeIdx === idx ? null : idx)}
                   onMouseEnter={() => setHoverIdx(idx)}
@@ -129,10 +133,13 @@ function Clinica() {
                     <p className="text-white/60 text-xs leading-relaxed" style={{ opacity: isRevealed ? 1 : 0, transition: 'opacity 0.5s ease 0.1s' }}>
                       {item.desc}
                     </p>
+                    <span className="inline-flex items-center gap-1.5 mt-3 text-accent-300 text-[10px] font-bold uppercase tracking-widest" style={{ opacity: isRevealed ? 1 : 0, transition: 'opacity 0.5s ease 0.15s' }}>
+                      Ler mais <ArrowRight className="w-3 h-3" />
+                    </span>
                   </div>
 
                   <div className="absolute -inset-1 bg-linear-to-r from-brand-500 to-accent-500 rounded-2xl blur z-0" style={{ opacity: isRevealed ? 0.2 : 0, transition: 'opacity 0.5s ease' }} />
-                </div>
+                </Link>
               </div>
             );
           })}

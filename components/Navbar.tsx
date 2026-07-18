@@ -9,6 +9,8 @@ const navItems: NavItem[] = [
   { label: 'Medicina Veterinária', href: '/#authority' },
   { label: 'Estética', href: '/#services' },
   { label: 'PetShop', href: '/#services' },
+  { label: 'Blog', href: '/blog' },
+  { label: 'Localização', href: '/#contact' },
 ];
 
 export function Navbar() {
@@ -43,11 +45,18 @@ export function Navbar() {
         <a href="/" className="flex items-center gap-1 group">
           <div className="relative flex items-center">
             {/* Logo Construction based on image provided */}
-            <span className={`font-serif italic text-3xl md:text-4xl pr-1 transition-colors ${isScrolled ? 'text-accent-500' : 'text-accent-500'}`}>
+            <span className="font-logo-script text-4xl md:text-5xl transition-colors text-accent-500 leading-none">
               Pet
             </span>
-            <MapPin className={`w-5 h-5 md:w-6 md:h-6 mb-2 -ml-1 ${isScrolled ? 'text-accent-500' : 'text-accent-500'} fill-current`} />
-            <span className={`font-sans font-black text-2xl md:text-3xl tracking-tighter uppercase transition-colors ${isScrolled ? 'text-brand-600' : 'text-white md:text-brand-600 lg:text-white'}`}>
+            <svg
+              viewBox="0 0 24 24"
+              fill="currentColor"
+              className="w-5 h-5 md:w-6 md:h-6 mx-1 text-accent-500 shrink-0"
+              aria-hidden="true"
+            >
+              <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z" />
+            </svg>
+            <span className={`font-sans font-bold text-2xl md:text-3xl tracking-tight uppercase transition-colors ${isScrolled ? 'text-brand-600' : 'text-white md:text-brand-600 lg:text-white'}`}>
               Point
             </span>
           </div>
@@ -67,7 +76,7 @@ export function Navbar() {
             </a>
           ))}
           <a
-            href="#contact"
+            href="/#contact"
             className={`px-6 py-2.5 rounded-full text-sm font-semibold transition-all transform hover:scale-105 active:scale-95 ${isScrolled
               ? 'bg-brand-600 text-white hover:bg-brand-700 shadow-lg shadow-brand-600/20'
               : 'bg-white text-brand-900 hover:bg-brand-50'
@@ -114,7 +123,7 @@ export function Navbar() {
             </a>
           ))}
           <a
-            href="#contact"
+            href="/#contact"
             onClick={() => setIsMobileMenuOpen(false)}
             className="px-8 py-3 bg-brand-600 text-white rounded-full text-lg font-semibold shadow-xl"
           >

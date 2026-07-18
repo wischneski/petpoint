@@ -1,6 +1,10 @@
 @import "tailwindcss";
 @config "../tailwind.config.js";
 
+.font-logo-script {
+  font-family: var(--font-great-vibes), sans-serif;
+}
+
 @layer base {
   * {
     margin: 0;
@@ -122,6 +126,42 @@
 .below-fold {
   content-visibility: auto;
   contain-intrinsic-size: auto 600px;
+}
+
+/* ─────────────────────────────────────────────
+   Article — layout editorial premium (estilo newsletter)
+   ───────────────────────────────────────────── */
+.article-content > .article-paragraph:first-of-type::first-letter {
+  float: left;
+  font-family: var(--font-playfair), serif;
+  font-size: 4.5rem;
+  line-height: 0.82;
+  padding: 0.05em 0.12em 0 0;
+  color: #CF2E78;
+  font-weight: 700;
+}
+
+.article-list-item::before {
+  content: '';
+  position: absolute;
+  left: -1.25rem;
+  top: 0.65em;
+  width: 6px;
+  height: 6px;
+  border-radius: 9999px;
+  background: #CF2E78;
+}
+
+.article-list {
+  padding-left: 1.25rem;
+}
+
+.article-list--ordered {
+  padding-left: 1.5rem;
+}
+
+.article-list--ordered .article-list-item::before {
+  content: none;
 }
 
 /* ─────────────────────────────────────────────

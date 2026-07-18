@@ -17,6 +17,12 @@
 - Centro de Estética: Banho e Tosa com produtos Pelôncio
 - PetShop Premium: nutrição, farmácia veterinária e acessórios
 
+## Blog e Conteúdo Educacional
+- [Blog](https://www.meupetpoint.com.br/blog): Artigos sobre saúde, nutrição e comportamento animal, escritos pela equipe médica da PetPoint
+- [Especialidades](https://www.meupetpoint.com.br/blog/especialidades): Páginas detalhadas sobre cada especialidade médica oferecida (clínica geral, oncologia, odontologia, vacinação, diagnóstico por imagem, endoscopia, eletroquimioterapia, urgências)
+- [Conteúdo para tutores de cães](https://www.meupetpoint.com.br/blog/caes)
+- [Conteúdo para tutores de gatos](https://www.meupetpoint.com.br/blog/gatos)
+
 ## Localização
 R. Teresa Mariana de Jesus, 135 - Centro, Morro da Fumaça/SC, 88830-000
 Clínica: (48) 99912-0084 | Loja/Estética: (48) 99955-6555

@@ -167,12 +167,12 @@ function Contato() {
                 <div className="flex flex-col gap-3">
                   <div className="flex items-center justify-between">
                     <span className="text-white/35 text-[10px] uppercase tracking-widest">Seg — Sex</span>
-                    <span className="text-white font-semibold text-sm">08h às 18h</span>
+                    <span className="text-white font-semibold text-sm">7:30h às 18:30h</span>
                   </div>
                   <div className="h-px bg-white/6" />
                   <div className="flex items-center justify-between">
                     <span className="text-white/35 text-[10px] uppercase tracking-widest">Sábado</span>
-                    <span className="text-white font-semibold text-sm">08h às 12h</span>
+                    <span className="text-white font-semibold text-sm">7:30h às 12h</span>
                   </div>
                   <div className="h-px bg-white/6" />
                   <div className="flex items-center justify-between">

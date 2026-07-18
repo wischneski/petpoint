@@ -1,9 +1,17 @@
 import type { Metadata } from 'next';
 import type { ReactNode } from 'react';
 import localFont from 'next/font/local';
+import { Great_Vibes } from 'next/font/google';
 import Script from 'next/script';
 import { ErrorBoundary } from '@/components/ui/ErrorBoundary';
 import './globals.css';
+
+const greatVibes = Great_Vibes({
+  weight: '400',
+  subsets: ['latin'],
+  variable: '--font-great-vibes',
+  display: 'swap',
+});
 
 const inter = localFont({
   src: [
@@ -86,6 +94,16 @@ const structuredData = {
   '@context': 'https://schema.org',
   '@graph': [
 
+    // WebSite — referenciado por isPartOf em páginas de artigo/especialidade
+    {
+      '@type': 'WebSite',
+      '@id': 'https://www.meupetpoint.com.br/#website',
+      url: 'https://www.meupetpoint.com.br',
+      name: 'PetPoint Hospital Veterinário & Estética',
+      inLanguage: 'pt-BR',
+      publisher: { '@id': 'https://www.meupetpoint.com.br/#business' },
+    },
+
     // LocalBusiness + VeterinaryCare
     {
       '@type': ['LocalBusiness', 'VeterinaryCare'],
@@ -121,19 +139,20 @@ const structuredData = {
         {
           '@type': 'OpeningHoursSpecification',
           dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'],
-          opens: '08:00',
-          closes: '19:00',
+          opens: '07:30',
+          closes: '18:30',
         },
         {
           '@type': 'OpeningHoursSpecification',
           dayOfWeek: 'Saturday',
-          opens: '08:00',
-          closes: '13:00',
+          opens: '07:30',
+          closes: '12:00',
         },
       ],
       employee: [
         { '@id': 'https://www.meupetpoint.com.br/#vinicius' },
         { '@id': 'https://www.meupetpoint.com.br/#nathalia' },
+        { '@id': 'https://www.meupetpoint.com.br/#larissa' },
       ],
       sameAs: ['https://instagram.com/petpointanimal'],
       hasMap: 'https://maps.google.com/?q=-28.6489,-49.2069',
@@ -154,6 +173,7 @@ const structuredData = {
       member: [
         { '@id': 'https://www.meupetpoint.com.br/#vinicius' },
         { '@id': 'https://www.meupetpoint.com.br/#nathalia' },
+        { '@id': 'https://www.meupetpoint.com.br/#larissa' },
       ],
       dateModified: '2026-06-01',
     },
@@ -210,6 +230,21 @@ const structuredData = {
         'Anestesiologia Veterinária',
         'Clínica Geral Veterinária',
         'Medicina Interna Veterinária',
+      ],
+      worksFor: { '@id': 'https://www.meupetpoint.com.br/#business' },
+      dateModified: '2026-06-01',
+    },
+
+    // Person — Dra. Larissa Wischneski
+    {
+      '@type': 'Person',
+      '@id': 'https://www.meupetpoint.com.br/#larissa',
+      name: 'Dra. Larissa Wischneski',
+      jobTitle: 'Médica Veterinária — Odontologia Veterinária',
+      image: 'https://www.meupetpoint.com.br/images/team/larissa.png',
+      knowsAbout: [
+        'Odontologia Veterinária',
+        'Clínica Geral Veterinária',
       ],
       worksFor: { '@id': 'https://www.meupetpoint.com.br/#business' },
       dateModified: '2026-06-01',
@@ -292,7 +327,7 @@ setTimeout(boot,5000);})();`;
 
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (
-    <html lang="pt-BR" className={`${inter.variable} ${playfair.variable}`}>
+    <html lang="pt-BR" className={`${inter.variable} ${playfair.variable} ${greatVibes.variable}`}>
       <head>
         <meta name="theme-color" content="#CF2E78" />
         <script

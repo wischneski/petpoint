@@ -5,19 +5,25 @@ import { Navbar } from '@/components/Navbar';
 import { Hero } from '@/components/Hero';
 import ServiceBar from '@/components/ServiceBar';
 import About from '@/components/About';
+import type { BlogPostMeta } from '@/features/blog/types';
 
 const Services     = lazy(() => import('@/components/Services'));
 const Estetica     = lazy(() => import('@/components/Estetica'));
 const PetShop      = lazy(() => import('@/components/PetShop'));
 const Clinica      = lazy(() => import('@/components/Clinica'));
 const Team         = lazy(() => import('@/components/Team'));
+const Blog         = lazy(() => import('@/components/Blog'));
 const Testimonials = lazy(() => import('@/components/Testimonials'));
 const FAQ          = lazy(() => import('@/components/FAQ'));
-const Blog         = lazy(() => import('@/components/Blog'));
+const Insta        = lazy(() => import('@/components/Insta'));
 const Contato      = lazy(() => import('@/components/Contato'));
 const Footer       = lazy(() => import('@/components/Footer'));
 
-export default function HomePage() {
+interface HomePageProps {
+  posts: BlogPostMeta[];
+}
+
+export default function HomePage({ posts }: HomePageProps) {
   return (
     <>
       <Navbar />
@@ -31,9 +37,10 @@ export default function HomePage() {
           <PetShop />
           <Clinica />
           <Team />
+          <Blog posts={posts} />
           <Testimonials />
           <FAQ />
-          <Blog />
+          <Insta />
           <Contato />
         </Suspense>
       </main>

@@ -7,8 +7,7 @@ import { Globe, Share2, ChevronLeft, ChevronRight } from 'lucide-react';
 const team = [
   { name: 'Dra. Nathalia',          role: 'Anestesia e Clínica Geral',    image: '/images/team/nat.webp',        specialty: 'Anestesia e Clínica Geral',                    crmv: 'CRMV-SC 14519' },
   { name: 'Dr. Vinicius Wischneski', role: 'Diretor Clínico',              image: '/images/team/vini.webp',       specialty: 'Oncologia e Cirurgia de pequenos animais',     crmv: 'CRMV-SC 8434'  },
-  { name: 'Dra. Larissa Wischneski', role: 'Odontologia Veterinária',      image: '/images/team/larissa.webp',    specialty: 'Odontologia e Clínica Geral',                  crmv: undefined       },
-  { name: 'Maria Eduarda Tuon',      role: 'Recepção',                     image: '/images/team/duda.webp',       specialty: 'Atendimento ao cliente',                       crmv: undefined       },
+  { name: 'Dra. Larissa Wischneski', role: 'Odontologia Veterinária',      image: '/images/team/larissa.png',    specialty: 'Odontologia e Clínica Geral',                  crmv: undefined       },
   { name: 'Valéria',                 role: 'Loja e Pet Shop',              image: '/images/team/val.webp',        specialty: 'Atendimento e vendas',                         crmv: undefined       },
   { name: 'Gustavo',                 role: 'Loja e Pet Shop',              image: '/images/team/gustavo.webp',    specialty: 'Atendimento e vendas',                         crmv: undefined       },
   { name: 'Ana Carolina',            role: 'Loja e Pet Shop',              image: '/images/team/ana-carolina.webp', specialty: 'Atendimento e vendas',                       crmv: undefined       },

@@ -1,8 +1,53 @@
 # robots.txt para PetPoint Hospital Veterinário
-# Permite acesso a todos os crawlers
+# Permite acesso a todos os crawlers, incluindo bots de IA (GEO/AEO)
 
 User-agent: *
 Allow: /
 
-# Sitemap
+# OpenAI / ChatGPT
+User-agent: GPTBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: OAI-SearchBot
+Allow: /
+
+# Anthropic / Claude
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: Claude-Web
+Allow: /
+
+User-agent: anthropic-ai
+Allow: /
+
+# Google — AI Overviews / Gemini
+User-agent: Googlebot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+# Microsoft / Copilot / Bing
+User-agent: Bingbot
+Allow: /
+
+# Perplexity
+User-agent: PerplexityBot
+Allow: /
+
+# Meta AI
+User-agent: Meta-ExternalAgent
+Allow: /
+
+# Apple / Siri
+User-agent: Applebot-Extended
+Allow: /
+
+# Contexto adicional para LLMs (Claude e ChatGPT leem este arquivo)
+# https://www.meupetpoint.com.br/llms.txt
+
 Sitemap: https://www.meupetpoint.com.br/sitemap.xml
